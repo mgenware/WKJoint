@@ -64,7 +64,9 @@ class ViewController: UIViewController {
         }
         
         jsonNS.addFunc("parse") { (args) -> Any? in
-            let str = args["value"] as! String
+            guard let str = args["value"] as? String else {
+                throw MyError.RuntimeError("value is not a valid string")
+            }
             guard let data = str.data(using: .utf8) else {
                 throw MyError.RuntimeError("Invalid data")
             }
