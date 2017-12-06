@@ -6,6 +6,32 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <title>WKJoint Playground</title>
+
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Open Sans", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      code {
+        font-family: "Source Code Pro", Consolas, Menlo, Monaco, "Courier New", monospace;
+      }
+
+      .btn {
+        border-radius: 0px;
+        color: #ffffff;
+        font-size: 17px;
+        background: #628a54;
+        padding: 10px 20px 10px 20px;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+      }
+      
+      .btn:hover {
+        background: #91bd80;
+        text-decoration: none;
+      }
+    </style>
   </head>
 
   <body>
@@ -16,10 +42,10 @@
     <h2>Runtime</h2>
     <p id="rt-row"></p>
 
-    <button id="btnTestAsync">json.parseAsync</button><br>
-    <button id="btnTestAsyncErr">json.parseAsync with error</button><br>
-    <button id="btnTestSync">json.parse</button><br>
-    <button id="btnTestSyncErr">json.parse with error</button><br>
+    <button class="btn" id="btnTestAsync">json.parseAsync</button><br>
+    <button class="btn" id="btnTestAsyncErr">json.parseAsync with error</button><br>
+    <button class="btn" id="btnTestSync">json.parse</button><br>
+    <button class="btn" id="btnTestSyncErr">json.parse with error</button><br>
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script>
@@ -31,7 +57,7 @@
         });
       }
       $('#ua-row').text(navigator.userAgent);
-      $('#rt-row').text(!!window.__WKJoint);
+      $('#rt-row').text(!!window.__WKJoint ? 'Injected' : 'Not found');
 
       $('#btnTestAsync').click(function(e) {
         handlePromise(window.__WKJoint.beginPromise('json', 'parseAsync', { value: '{ "name": "Mgen", "id": 1 }' }));
