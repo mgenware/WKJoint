@@ -21,3 +21,9 @@ class WKJAPIArgs {
         }
     }
 }
+
+extension WKJAPIArgs: CustomStringConvertible {
+    var description: String {
+        return dictionary.description
+    }
+}
