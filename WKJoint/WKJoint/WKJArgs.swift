@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Type of arguments for a sync func
 class WKJArgs {
     let id: String
     let dictionary: [String: Any];
@@ -24,6 +25,7 @@ class WKJArgs {
     }
 }
 
+// MARK: - CustomStringConvertible
 extension WKJArgs: CustomStringConvertible {
     var description: String {
         return dictionary.description

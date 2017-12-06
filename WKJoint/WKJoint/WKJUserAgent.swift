@@ -10,6 +10,7 @@ import UIKit
 import WebKit
 
 class WKJUserAgent: NSObject {
+    // appends a custom UA string
     static func updateUserAgent(webView: WKWebView) {
         if #available(iOS 9.0, *) {
             webView.evaluateJavaScript("navigator.userAgent", completionHandler: { (res, err) in
@@ -24,6 +25,7 @@ class WKJUserAgent: NSObject {
     }
 }
 
+// Custom UA
 extension WKJUserAgent {
     static func requestUserAgent() -> String {
         guard let infoDic = Bundle.main.infoDictionary else {

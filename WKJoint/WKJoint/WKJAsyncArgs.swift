@@ -13,6 +13,7 @@ protocol WKJAsyncArgsDelegate: class {
     func args(_ args: WKJAsyncArgs, didReject error: Any?)
 }
 
+// Type of arguments for an async func
 class WKJAsyncArgs: WKJArgs {
     weak var delegate: WKJAsyncArgsDelegate?
     

@@ -9,16 +9,16 @@
 import UIKit
 import WebKit
 
-// defines func type for a sync style API
+// Func type for a sync func
 typealias WKJFunc = (_ args: WKJArgs) throws -> Any?
-// defines func type for an async style API
+// Func type for an async func
 typealias WKJAsyncFunc = (_ args: WKJAsyncArgs) -> Void
 
 protocol WKJNamespaceDelegate: class {
     func namespace(_ namespace: WKJNamespace, didRequestJavaScriptCall js: String)
 }
 
-// defines type used to store an API func
+// defines the type used to store an API func
 protocol WKJFuncProtocol {
     var name: String { get }
 }
