@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+      "module": "commonjs",
+      "removeComments": true,
+      "preserveConstEnums": true,
+      "sourceMap": false,
+      "target": "ES5",
+      "declaration": false,
+      "strict": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "lib": [
+        "DOM", "ES5", "ES6", "ScriptHost"
+      ]
+  },
+  "files": [
+    "wkj_runtime.ts"
+  ]
+}

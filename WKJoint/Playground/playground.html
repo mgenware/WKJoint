@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>WKJoint Playground</title>
+  </head>
+
+  <body>
+    <h1>WKJoint Playground</h1>
+    <h2>UA</h2>
+    <p id="ua-row"></p>
+
+    <h2>Runtime</h2>
+    <p id="rt-row"></p>
+
+    <button id="btnOK">OKOK</button>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script>
+      $('#ua-row').text(navigator.userAgent);
+      $('#rt-row').text(!!window.__WKJoint);
+      $('#btnOK').click(function(e) {
+        window.__WKJoint.beginPromise('device', 'osVer', {a: 123, b: 'bbb'}).then(res => {
+          alert('res ', res);
+        }).catch(err => {
+          alert('err ', err);
+        });
+      });
+    </script>
+  </body>
+</html>
