@@ -52,7 +52,7 @@ var WKJointRuntime = (function () {
             delayedPromise.reject(error);
         }
         else {
-            delayedPromise.resolve(data);
+            delayedPromise.resolve(data ? data.default : undefined);
         }
         delete this.promises[id];
     };

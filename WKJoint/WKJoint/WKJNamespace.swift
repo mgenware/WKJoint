@@ -85,7 +85,7 @@ extension WKJNamespace: WKScriptMessageHandler {
         guard let data = data else {
             return JS_UNDEFINED
         }
-        let raw = try? JSONSerialization.data(withJSONObject: data, options: [])
+        let raw = try? JSONSerialization.data(withJSONObject: ["default": data], options: [])
         if let raw = raw {
             return String(bytes: raw, encoding: .utf8) ?? JS_UNDEFINED
         }

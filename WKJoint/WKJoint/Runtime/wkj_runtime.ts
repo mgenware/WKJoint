@@ -60,7 +60,7 @@ class WKJointRuntime {
     if (error) {
       delayedPromise.reject(error);
     } else {
-      delayedPromise.resolve(data);
+      delayedPromise.resolve(data ? data.default : undefined);
     }
     // remove reference
     delete this.promises[id];
