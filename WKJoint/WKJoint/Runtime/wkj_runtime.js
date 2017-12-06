@@ -19,6 +19,7 @@ var WKJointRuntime = (function () {
     WKJointRuntime.prototype.beginPromise = function (ns, func, arg) {
         var _this = this;
         if (!ns || !func) {
+            this.log("BeginPromise: argument null: " + ns + "." + func);
             return null;
         }
         var promise = new Promise(function (resolve, reject) {
@@ -27,6 +28,7 @@ var WKJointRuntime = (function () {
             delayedPromise.resolve = resolve;
             delayedPromise.reject = reject;
             _this.promises[id] = delayedPromise;
+            _this.log("BeginPromise: " + ns + "." + func + " [" + id + "]");
             try {
                 var wind_1 = window;
                 if (wind_1.webkit && wind_1.webkit.messageHandlers) {
@@ -38,14 +40,16 @@ var WKJointRuntime = (function () {
                 }
             }
             catch (exception) {
-                alert(exception);
+                _this.log("BeginPromise: exception: " + JSON.stringify(exception));
             }
         });
         return promise;
     };
     WKJointRuntime.prototype.endPromise = function (id, data, error) {
+        this.log("EndPromise: [" + id + "] data: " + JSON.stringify(data) + ", error: " + JSON.stringify(error));
         var delayedPromise = this.promises[id];
         if (!delayedPromise) {
+            this.log("EndPromise: not found");
             return;
         }
         if (error) {
@@ -61,6 +65,11 @@ var WKJointRuntime = (function () {
             var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(16);
         });
+    };
+    WKJointRuntime.prototype.log = function (msg) {
+        if (this.devMode) {
+            console.log(msg);
+        }
     };
     return WKJointRuntime;
 }());
