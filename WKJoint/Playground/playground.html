@@ -24,7 +24,7 @@
       $('#rt-row').text(!!window.__WKJoint);
 
       $('#btnTest').click(function(e) {
-        window.__WKJoint.beginPromise('device', 'osVer', { wait: 3, nullValue: null }).then(res => {
+        window.__WKJoint.beginPromise('device', 'osVer', { waitSec: 3, nullValue: null }).then(res => {
           alert('results: ', res);
         }).catch(err => {
           alert('error: ', err);

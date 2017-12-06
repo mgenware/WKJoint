@@ -36,9 +36,18 @@ class ViewController: UIViewController {
         view.addSubview(webView)
         
         let deviceNS = WKJNamespace(name: "device")
-        deviceNS["osVer"] = { (args) -> Any? in
-            print("args: ", args)
-            return nil
+        deviceNS["osVer"] = { (args) -> Void in
+            print(args)
+            if let waitSec = args["waitSec"] as? Int {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(waitSec), execute: {
+                    args.resolve(UIDevice.current.systemVersion)
+                })
+            }
+            args.resolve(UIDevice.current.systemVersion)
+        }
+        
+        deviceNS["echo"] = { (args) -> Void in
+            args.resolve(args)
         }
         
         let wkjConfig = WKJConfiguration()

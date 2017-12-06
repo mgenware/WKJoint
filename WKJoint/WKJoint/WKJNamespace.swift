@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-typealias WKJAPIFunc = (_ args: WKJAPIArgs) throws -> Any?
+typealias WKJAPIFunc = (_ args: WKJArgs) throws -> Void
 
 protocol WKJNamespaceDelegate {
     func namespace(_ namespace: WKJNamespace, didRequestJavaScriptCall js: String)
@@ -58,8 +58,10 @@ extension WKJNamespace: WKScriptMessageHandler {
         }
         
         do {
-            let results = try fn(WKJAPIArgs(dictionary: body["arg"] as? [String: Any] ?? [:]))
-            resolvePromise(id: promiseID, data: results, error: nil)
+            let args = WKJArgs(id: promiseID, dictionary: body["arg"] as? [String: Any] ?? [:])
+            args.delegate = self
+            
+            try fn(args)
         } catch {
             print("Error: \(error)")
             resolvePromise(id: promiseID, data: nil, error: error)
@@ -86,5 +88,16 @@ extension WKJNamespace: WKScriptMessageHandler {
             return String(bytes: raw, encoding: .utf8) ?? "null"
         }
         return "null";
+    }
+}
+
+// MARK: WKJArgsDelegate
+extension WKJNamespace: WKJArgsDelegate {
+    func args(_ args: WKJArgs, didResolve data: Any?) {
+        resolvePromise(id: args.id, data: data, error: nil)
+    }
+    
+    func args(_ args: WKJArgs, didReject error: Any?) {
+        resolvePromise(id: args.id, data: nil, error: error)
     }
 }
