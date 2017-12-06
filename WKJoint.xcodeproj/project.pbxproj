@@ -16,9 +16,7 @@
 		874262E71FD7965E0094618A /* WKJConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262E61FD7965E0094618A /* WKJConfiguration.swift */; };
 		874262EA1FD799500094618A /* WKJNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262E91FD799500094618A /* WKJNamespace.swift */; };
 		874262ED1FD7C4360094618A /* WKJRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262EC1FD7C4360094618A /* WKJRuntime.swift */; };
-		874262F31FD7C48E0094618A /* tsconfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 874262F01FD7C48E0094618A /* tsconfig.json */; };
 		874262F61FD7C50D0094618A /* wkj_runtime.js in Resources */ = {isa = PBXBuildFile; fileRef = 874262F41FD7C50D0094618A /* wkj_runtime.js */; };
-		874262F71FD7C50D0094618A /* wkj_runtime.ts in Resources */ = {isa = PBXBuildFile; fileRef = 874262F51FD7C50D0094618A /* wkj_runtime.ts */; };
 		874262F91FD7CEB00094618A /* Playground in Resources */ = {isa = PBXBuildFile; fileRef = 874262F81FD7CEB00094618A /* Playground */; };
 /* End PBXBuildFile section */
 
@@ -165,10 +163,8 @@
 			files = (
 				874262DA1FD792CF0094618A /* LaunchScreen.storyboard in Resources */,
 				874262D71FD792CF0094618A /* Assets.xcassets in Resources */,
-				874262F71FD7C50D0094618A /* wkj_runtime.ts in Resources */,
 				874262D51FD792CF0094618A /* Main.storyboard in Resources */,
 				874262F61FD7C50D0094618A /* wkj_runtime.js in Resources */,
-				874262F31FD7C48E0094618A /* tsconfig.json in Resources */,
 				874262F91FD7CEB00094618A /* Playground in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
