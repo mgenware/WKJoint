@@ -25,9 +25,9 @@
 
       $('#btnTest').click(function(e) {
         window.__WKJoint.beginPromise('device', 'osVer', { waitSec: 3, nullValue: null }).then(res => {
-          alert('results: ', res);
+          alert(`results: ${res}`);
         }).catch(err => {
-          alert('error: ', err);
+          alert(`error: ${err}`);
         });
       });
     </script>

@@ -35,6 +35,8 @@ class ViewController: UIViewController {
         webView = WKWebView(frame: view.bounds, configuration: webViewConfig)
         view.addSubview(webView)
         
+        webView.uiDelegate = self
+        
         let deviceNS = WKJNamespace(name: "device")
         deviceNS["osVer"] = { (args) -> Void in
             print(args)
@@ -42,8 +44,9 @@ class ViewController: UIViewController {
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(waitSec), execute: {
                     args.resolve(UIDevice.current.systemVersion)
                 })
+            } else {
+                args.resolve(UIDevice.current.systemVersion)
             }
-            args.resolve(UIDevice.current.systemVersion)
         }
         
         deviceNS["echo"] = { (args) -> Void in
