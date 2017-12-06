@@ -9,6 +9,10 @@
 import UIKit
 import WebKit
 
+enum MyError : Error {
+    case RuntimeError(String)
+}
+
 class ViewController: UIViewController {
     var webView: WKWebView!
     
@@ -37,24 +41,38 @@ class ViewController: UIViewController {
         
         webView.uiDelegate = self
         
-        let deviceNS = WKJNamespace(name: "device")
-        deviceNS["osVer"] = { (args) -> Void in
-            print(args)
-            if let waitSec = args["waitSec"] as? Int {
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(waitSec), execute: {
-                    args.resolve(UIDevice.current.systemVersion)
-                })
-            } else {
-                args.resolve(UIDevice.current.systemVersion)
+        let jsonNS = WKJNamespace(name: "json")
+        jsonNS.addAsycFunc("parseAsync") { (args) in
+            guard let str = args["value"] as? String else {
+                args.reject("Invalid argument")
+                return
             }
+            // wait 3 sec
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                guard let data = str.data(using: .utf8) else {
+                    args.reject("Encoding error")
+                    return
+                }
+                
+                do {
+                    let obj = try JSONSerialization.jsonObject(with: data, options: [])
+                    args.resolve(obj)
+                } catch {
+                    args.reject(error)
+                }
+            })
         }
         
-        deviceNS["echo"] = { (args) -> Void in
-            args.resolve(args)
+        jsonNS.addFunc("parse") { (args) -> Any? in
+            let str = args["value"] as! String
+            guard let data = str.data(using: .utf8) else {
+                throw MyError.RuntimeError("Invalid data")
+            }
+            return try JSONSerialization.jsonObject(with: data, options: [])
         }
         
         let wkjConfig = WKJConfiguration()
-        wkjConfig.addNamespaces([deviceNS])
+        wkjConfig.addNamespaces([jsonNS])
         wkjConfig.addToWebView(webView)
         webViewConfig.userContentController.addUserScript(WKJRuntime.wkUserScript())
     }

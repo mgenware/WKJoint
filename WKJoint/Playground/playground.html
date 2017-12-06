@@ -16,19 +16,34 @@
     <h2>Runtime</h2>
     <p id="rt-row"></p>
 
-    <button id="btnTest">Test</button>
+    <button id="btnTestAsync">json.parseAsync</button><br>
+    <button id="btnTestAsyncErr">json.parseAsync with error</button><br>
+    <button id="btnTestSync">json.parse</button><br>
+    <button id="btnTestSyncErr">json.parse with error</button><br>
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script>
+      function handlePromise(promise) {
+        promise.then((res) => {
+          alert(`Succeeded: ${JSON.stringify(res)}`);
+        }).catch((err) => {
+          alert(`Failed: ${JSON.stringify(err)}`);
+        });
+      }
       $('#ua-row').text(navigator.userAgent);
       $('#rt-row').text(!!window.__WKJoint);
 
-      $('#btnTest').click(function(e) {
-        window.__WKJoint.beginPromise('device', 'osVer', { waitSec: 3, nullValue: null }).then(res => {
-          alert(`results: ${res}`);
-        }).catch(err => {
-          alert(`error: ${err}`);
-        });
+      $('#btnTestAsync').click(function(e) {
+        handlePromise(window.__WKJoint.beginPromise('json', 'parseAsync', { value: '{ "name": "Mgen", "id": 1 }' }));
+      });
+      $('#btnTestAsyncErr').click(function(e) {
+        handlePromise(window.__WKJoint.beginPromise('json', 'parseAsync', { value: '{{{' }));
+      });
+      $('#btnTestSync').click(function(e) {
+        handlePromise(window.__WKJoint.beginPromise('json', 'parse', { value: '{ "name": "Mgen", "id": 1 }' }));
+      });
+      $('#btnTestSyncErr').click(function(e) {
+        handlePromise(window.__WKJoint.beginPromise('json', 'parse', { value: '{{{' }));
       });
     </script>
   </body>

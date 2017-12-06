@@ -12,9 +12,7 @@ import WebKit
 class WKJConfiguration {
     // you should not use this property directly
     private var nsMap: [String: WKJNamespace] = [String: WKJNamespace]()
-    
-    private weak var webView: WKWebView?
-    
+        
     func addNamespaces(_ namespaces: [WKJNamespace]) {
         for ns in namespaces {
             if nsMap[ns.name] != nil {
@@ -30,18 +28,17 @@ class WKJConfiguration {
     }
     
     func addToWebView(_ webView: WKWebView) {
-        self.webView = webView
         for (key, val) in nsMap {
-            val.delegate = self
+            val.delegate = webView
             webView.configuration.userContentController.add(val, name: key)
         }
     }
 }
 
 // MARK: WKJNamespaceDelegate
-extension WKJConfiguration: WKJNamespaceDelegate {
+extension WKWebView: WKJNamespaceDelegate {
     func namespace(_ namespace: WKJNamespace, didRequestJavaScriptCall js: String) {
-        webView?.evaluateJavaScript(js, completionHandler: { (_, error) in
+        evaluateJavaScript(js, completionHandler: { (_, error) in
             if let error = error {
                 print("Error occurred in WKJConfiguration.didRequestJavaScriptCall: \(error)")
             }

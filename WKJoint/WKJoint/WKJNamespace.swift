@@ -9,29 +9,50 @@
 import UIKit
 import WebKit
 
-typealias WKJAPIFunc = (_ args: WKJArgs) throws -> Void
+typealias WKJFunc = (_ args: WKJArgs) throws -> Any?
+typealias WKJAsyncFunc = (_ args: WKJAsyncArgs) -> Void
 
-protocol WKJNamespaceDelegate {
+protocol WKJNamespaceDelegate: class {
     func namespace(_ namespace: WKJNamespace, didRequestJavaScriptCall js: String)
 }
 
+protocol WKJFuncProtocol {
+    var name: String { get }
+}
+
 class WKJNamespace: NSObject {
+    struct SyncFunc: WKJFuncProtocol {
+        let name: String
+        let value: WKJFunc
+    }
+    struct AsyncFunc: WKJFuncProtocol {
+        let name: String
+        let value: WKJAsyncFunc
+    }
+    
     let JS_UNDEFINED = "undefined"
     let name: String
-    private var funcs: [String: WKJAPIFunc] = [String: WKJAPIFunc]()
+    private var funcs: [String: WKJFuncProtocol] = [String: WKJFuncProtocol]()
     
-    var delegate: WKJNamespaceDelegate?
+    weak var delegate: WKJNamespaceDelegate?
     
     init(name: String) {
         self.name = name
     }
     
-    subscript(key: String) -> WKJAPIFunc? {
-        get {
-            return funcs[key]
-        }
-        set (newValue) {
-            funcs[key] = newValue
+    func addFunc(_ name: String, _ fn: @escaping WKJFunc) {
+        checkNotExist(fnName: name)
+        funcs[name] = SyncFunc(name: name, value: fn)
+    }
+    
+    func addAsycFunc(_ name: String, _ fn: @escaping WKJAsyncFunc) {
+        checkNotExist(fnName: name)
+        funcs[name] = AsyncFunc(name: name, value: fn)
+    }
+    
+    private func checkNotExist(fnName: String) {
+        if funcs[fnName] != nil {
+            assertionFailure("\(fnName) already exists")
         }
     }
 }
@@ -53,20 +74,30 @@ extension WKJNamespace: WKScriptMessageHandler {
             return
         }
         
-        guard let fn = self[funcName] else {
+        guard let fn = funcs[funcName] else {
             resolvePromise(id: promiseID, data: nil, error: "Func \"\(funcName)\" is not defined")
             return
         }
         
-        do {
-            let args = WKJArgs(id: promiseID, dictionary: body["arg"] as? [String: Any] ?? [:])
+        let bodyDictionary = body["arg"] as? [String: Any] ?? [:]
+        if fn is SyncFunc {
+            let syncFn = fn as! SyncFunc
+            do {
+                let args = WKJArgs(id: promiseID, dictionary: bodyDictionary)
+                
+                let result = try syncFn.value(args)
+                resolvePromise(id: promiseID, data: result, error: nil)
+            } catch {
+                resolvePromise(id: promiseID, data: nil, error: error)
+            }
+        } else {
+            let asyncFn = fn as! AsyncFunc
+            let args = WKJAsyncArgs(id: promiseID, dictionary: bodyDictionary)
             args.delegate = self
             
-            try fn(args)
-        } catch {
-            print("Error: \(error)")
-            resolvePromise(id: promiseID, data: nil, error: error)
+            asyncFn.value(args)
         }
+        
     }
     
     private func logWarning(_ msg: String) {
@@ -81,25 +112,31 @@ extension WKJNamespace: WKScriptMessageHandler {
     }
     
     private func dataToJSON(_ data: Any?) -> String {
-        
         guard let data = data else {
             return JS_UNDEFINED
         }
-        let raw = try? JSONSerialization.data(withJSONObject: ["default": data], options: [])
-        if let raw = raw {
+        do {
+            var any: Any
+            if data is Error {
+                any = (data as! Error).localizedDescription
+            } else {
+                any = data
+            }
+            let raw = try JSONSerialization.data(withJSONObject: ["default": any], options: [])
             return String(bytes: raw, encoding: .utf8) ?? JS_UNDEFINED
+        } catch {
+            return JS_UNDEFINED
         }
-        return JS_UNDEFINED;
     }
 }
 
 // MARK: WKJArgsDelegate
-extension WKJNamespace: WKJArgsDelegate {
-    func args(_ args: WKJArgs, didResolve data: Any?) {
+extension WKJNamespace: WKJAsyncArgsDelegate {
+    func args(_ args: WKJAsyncArgs, didResolve data: Any?) {
         resolvePromise(id: args.id, data: data, error: nil)
     }
     
-    func args(_ args: WKJArgs, didReject error: Any?) {
+    func args(_ args: WKJAsyncArgs, didReject error: Any?) {
         resolvePromise(id: args.id, data: nil, error: error)
     }
 }

@@ -62,7 +62,7 @@ class WKJointRuntime {
       return;
     }
     if (error) {
-      delayedPromise.reject(error);
+      delayedPromise.reject(error ? error.default : undefined);
     } else {
       delayedPromise.resolve(data ? data.default : undefined);
     }
