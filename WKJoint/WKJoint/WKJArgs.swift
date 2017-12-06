@@ -1,5 +1,5 @@
 //
-//  WKJAPIArgs.swift
+//  WKJArgs.swift
 //  WKJoint
 //
 //  Created by Mgen on 9/21/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WKJAPIArgs {
+class WKJArgs {
     let dictionary: [String: Any];
     
     init(dictionary: [String: Any]) {
@@ -22,7 +22,7 @@ class WKJAPIArgs {
     }
 }
 
-extension WKJAPIArgs: CustomStringConvertible {
+extension WKJArgs: CustomStringConvertible {
     var description: String {
         return dictionary.description
     }
