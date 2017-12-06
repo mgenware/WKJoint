@@ -16,6 +16,7 @@ protocol WKJNamespaceDelegate {
 }
 
 class WKJNamespace: NSObject {
+    let JS_UNDEFINED = "undefined"
     let name: String
     private var funcs: [String: WKJAPIFunc] = [String: WKJAPIFunc]()
     
@@ -80,14 +81,15 @@ extension WKJNamespace: WKScriptMessageHandler {
     }
     
     private func dataToJSON(_ data: Any?) -> String {
+        
         guard let data = data else {
-            return "null"
+            return JS_UNDEFINED
         }
         let raw = try? JSONSerialization.data(withJSONObject: data, options: [])
         if let raw = raw {
-            return String(bytes: raw, encoding: .utf8) ?? "null"
+            return String(bytes: raw, encoding: .utf8) ?? JS_UNDEFINED
         }
-        return "null";
+        return JS_UNDEFINED;
     }
 }
 
