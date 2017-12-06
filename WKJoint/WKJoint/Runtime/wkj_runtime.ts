@@ -11,8 +11,10 @@
  */
 
 class DelayedPromise<T> {
-  resolve: (value?: T | PromiseLike<T>) => void;
-  reject: (reason?: any) => void;
+  constructor(
+    public resolve: (value?: T | PromiseLike<T>) => void,
+    public reject: (reason?: any) => void
+  ) { }
 }
 
 class WKJCall {
@@ -31,9 +33,7 @@ class WKJointRuntime {
 
     const promise = new Promise((resolve, reject) => {
       const id = this.uuidv4();
-      const delayedPromise = new DelayedPromise();
-      delayedPromise.resolve = resolve;
-      delayedPromise.reject = reject;
+      const delayedPromise = new DelayedPromise(resolve, reject);
       this.promises[id] = delayedPromise;
       this.log(`BeginPromise: ${ns}.${func} [${id}]`);
        
