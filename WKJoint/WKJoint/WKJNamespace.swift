@@ -9,17 +9,21 @@
 import UIKit
 import WebKit
 
+// defines func type for a sync style API
 typealias WKJFunc = (_ args: WKJArgs) throws -> Any?
+// defines func type for an async style API
 typealias WKJAsyncFunc = (_ args: WKJAsyncArgs) -> Void
 
 protocol WKJNamespaceDelegate: class {
     func namespace(_ namespace: WKJNamespace, didRequestJavaScriptCall js: String)
 }
 
+// defines type used to store an API func
 protocol WKJFuncProtocol {
     var name: String { get }
 }
 
+// defines a namespace object
 class WKJNamespace: NSObject {
     struct SyncFunc: WKJFuncProtocol {
         let name: String
@@ -40,11 +44,13 @@ class WKJNamespace: NSObject {
         self.name = name
     }
     
+    // adds a sync style func to this namespace
     func addFunc(_ name: String, _ fn: @escaping WKJFunc) {
         checkNotExist(fnName: name)
         funcs[name] = SyncFunc(name: name, value: fn)
     }
     
+    // adds an async style func to this namespace
     func addAsycFunc(_ name: String, _ fn: @escaping WKJAsyncFunc) {
         checkNotExist(fnName: name)
         funcs[name] = AsyncFunc(name: name, value: fn)
@@ -57,6 +63,7 @@ class WKJNamespace: NSObject {
     }
 }
 
+// MARK: - WKScriptMessageHandler
 extension WKJNamespace: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let body = message.body as? Dictionary<String, Any> else {
@@ -130,7 +137,7 @@ extension WKJNamespace: WKScriptMessageHandler {
     }
 }
 
-// MARK: WKJArgsDelegate
+// MARK: - WKJArgsDelegate
 extension WKJNamespace: WKJAsyncArgsDelegate {
     func args(_ args: WKJAsyncArgs, didResolve data: Any?) {
         resolvePromise(id: args.id, data: data, error: nil)
