@@ -18,6 +18,7 @@
 		874262ED1FD7C4360094618A /* WKJRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262EC1FD7C4360094618A /* WKJRuntime.swift */; };
 		874262F61FD7C50D0094618A /* wkj_runtime.js in Resources */ = {isa = PBXBuildFile; fileRef = 874262F41FD7C50D0094618A /* wkj_runtime.js */; };
 		874262F91FD7CEB00094618A /* Playground in Resources */ = {isa = PBXBuildFile; fileRef = 874262F81FD7CEB00094618A /* Playground */; };
+		874262FB1FD7D9530094618A /* WKJAPIArgs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262FA1FD7D9530094618A /* WKJAPIArgs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		874262F41FD7C50D0094618A /* wkj_runtime.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = wkj_runtime.js; sourceTree = "<group>"; };
 		874262F51FD7C50D0094618A /* wkj_runtime.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wkj_runtime.ts; sourceTree = "<group>"; };
 		874262F81FD7CEB00094618A /* Playground */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Playground; sourceTree = "<group>"; };
+		874262FA1FD7D9530094618A /* WKJAPIArgs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJAPIArgs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				874262E61FD7965E0094618A /* WKJConfiguration.swift */,
 				874262EC1FD7C4360094618A /* WKJRuntime.swift */,
 				874262E91FD799500094618A /* WKJNamespace.swift */,
+				874262FA1FD7D9530094618A /* WKJAPIArgs.swift */,
 			);
 			path = WKJoint;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				874262D21FD792CF0094618A /* ViewController.swift in Sources */,
 				874262E71FD7965E0094618A /* WKJConfiguration.swift in Sources */,
 				874262E31FD793C70094618A /* WKJUserAgent.swift in Sources */,
+				874262FB1FD7D9530094618A /* WKJAPIArgs.swift in Sources */,
 				874262D01FD792CF0094618A /* AppDelegate.swift in Sources */,
 				874262EA1FD799500094618A /* WKJNamespace.swift in Sources */,
 				874262ED1FD7C4360094618A /* WKJRuntime.swift in Sources */,

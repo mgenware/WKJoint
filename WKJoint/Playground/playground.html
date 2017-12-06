@@ -16,17 +16,18 @@
     <h2>Runtime</h2>
     <p id="rt-row"></p>
 
-    <button id="btnOK">OKOK</button>
+    <button id="btnTest">Test</button>
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script>
       $('#ua-row').text(navigator.userAgent);
       $('#rt-row').text(!!window.__WKJoint);
-      $('#btnOK').click(function(e) {
-        window.__WKJoint.beginPromise('device', 'osVer', {a: 123, b: 'bbb'}).then(res => {
-          alert('res ', res);
+
+      $('#btnTest').click(function(e) {
+        window.__WKJoint.beginPromise('device', 'osVer', { wait: 3, nullValue: null }).then(res => {
+          alert('results: ', res);
         }).catch(err => {
-          alert('err ', err);
+          alert('error: ', err);
         });
       });
     </script>

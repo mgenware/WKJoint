@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         
         let deviceNS = WKJNamespace(name: "device")
         deviceNS["osVer"] = { (args) -> Any? in
-            print("OSV ", args)
+            print("args: ", args)
             return nil
         }
         

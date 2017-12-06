@@ -9,14 +9,6 @@
 import UIKit
 import WebKit
 
-class WKJAPIArgs {
-    let data: Any?;
-    
-    init(data: Any?) {
-        self.data = data
-    }
-}
-
 typealias WKJAPIFunc = (_ args: WKJAPIArgs) throws -> Any?
 
 protocol WKJNamespaceDelegate {
@@ -45,9 +37,6 @@ class WKJNamespace: NSObject {
 
 extension WKJNamespace: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        let name = message.name
-        print("BODY ", message.body)
-        
         guard let body = message.body as? Dictionary<String, Any> else {
             logWarning("Invalid body received")
             return
@@ -63,18 +52,13 @@ extension WKJNamespace: WKScriptMessageHandler {
             return
         }
         
-//        guard let ns = nullableNS else {
-//            resolvePromise(id: promiseID, data: nil, error: "Namespace \"\(name)\" is not defined")
-//            return
-//        }
-        
         guard let fn = self[funcName] else {
             resolvePromise(id: promiseID, data: nil, error: "Func \"\(funcName)\" is not defined")
             return
         }
         
         do {
-            let results = try fn(WKJAPIArgs(data: body["arg"]))
+            let results = try fn(WKJAPIArgs(dictionary: body["arg"] as? [String: Any] ?? [:]))
             resolvePromise(id: promiseID, data: results, error: nil)
         } catch {
             print("Error: \(error)")
@@ -90,7 +74,6 @@ extension WKJNamespace: WKScriptMessageHandler {
         let dataJS = dataToJSON(data)
         let errorJS = dataToJSON(error)
         let js = "window.__WKJoint.endPromise(\"\(id)\", \(dataJS), \(errorJS))"
-        print(js)
         delegate?.namespace(self, didRequestJavaScriptCall: js)
     }
     
