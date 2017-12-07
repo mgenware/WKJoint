@@ -35,8 +35,7 @@ class ViewController: UIViewController {
     }
 
     func setupWebView() {
-        let webViewConfig = WKWebViewConfiguration()
-        webView = WKWebView(frame: view.bounds, configuration: webViewConfig)
+        webView = WKWebView(frame: view.bounds)
         view.addSubview(webView)
         
         webView.uiDelegate = self
@@ -76,7 +75,7 @@ class ViewController: UIViewController {
         let wkjConfig = WKJConfiguration()
         wkjConfig.addNamespaces([jsonNS])
         wkjConfig.addToWebView(webView)
-        webViewConfig.userContentController.addUserScript(WKJRuntime.wkUserScript())
+        webView.configuration.userContentController.addUserScript(WKJRuntime.wkUserScript())
     }
 }
 
