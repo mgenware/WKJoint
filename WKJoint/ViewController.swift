@@ -41,23 +41,23 @@ class ViewController: UIViewController {
         webView.uiDelegate = self
         
         let jsonNS = WKJNamespace(name: "json")
-        jsonNS.addAsycFunc("parseAsync") { (args) in
+        jsonNS.addAsycFunc("parseAsync") { (args, promise) in
             guard let str = args["value"] as? String else {
-                args.reject("Invalid argument")
+                promise.reject("Invalid argument")
                 return
             }
             // wait 3 sec
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
                 guard let data = str.data(using: .utf8) else {
-                    args.reject("Encoding error")
+                    promise.reject("Encoding error")
                     return
                 }
                 
                 do {
                     let obj = try JSONSerialization.jsonObject(with: data, options: [])
-                    args.resolve(obj)
+                    promise.resolve(obj)
                 } catch {
-                    args.reject(error)
+                    promise.reject(error)
                 }
             })
         }
@@ -70,6 +70,10 @@ class ViewController: UIViewController {
                 throw MyError.RuntimeError("Invalid data")
             }
             return try JSONSerialization.jsonObject(with: data, options: [])
+        }
+        
+        jsonNS.addFunc("parse2") { (sdfsdf) -> Any? in
+            return "SDFDSF"
         }
         
         let wkjConfig = WKJConfiguration()

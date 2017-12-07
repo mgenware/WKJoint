@@ -12,7 +12,7 @@ import WebKit
 // Func type for a sync func
 typealias WKJFunc = (_ args: WKJArgs) throws -> Any?
 // Func type for an async func
-typealias WKJAsyncFunc = (_ args: WKJAsyncArgs) -> Void
+typealias WKJAsyncFunc = (_ args: WKJArgs, _ promise: WKJPromiseProxy) -> Void
 
 protocol WKJNamespaceDelegate: class {
     func namespace(_ namespace: WKJNamespace, didRequestJavaScriptCall js: String)
@@ -87,10 +87,10 @@ extension WKJNamespace: WKScriptMessageHandler {
         }
         
         let bodyDictionary = body["arg"] as? [String: Any] ?? [:]
+        let args = WKJArgs(id: promiseID, dictionary: bodyDictionary)
         if fn is SyncFunc {
             let syncFn = fn as! SyncFunc
             do {
-                let args = WKJArgs(id: promiseID, dictionary: bodyDictionary)
                 
                 let result = try syncFn.value(args)
                 resolvePromise(id: promiseID, data: result, error: nil)
@@ -99,10 +99,10 @@ extension WKJNamespace: WKScriptMessageHandler {
             }
         } else {
             let asyncFn = fn as! AsyncFunc
-            let args = WKJAsyncArgs(id: promiseID, dictionary: bodyDictionary)
-            args.delegate = self
+            let promiseProxy = WKJPromiseProxy(id: promiseID)
+            promiseProxy.delegate = self
             
-            asyncFn.value(args)
+            asyncFn.value(args, promiseProxy)
         }
         
     }
@@ -138,12 +138,12 @@ extension WKJNamespace: WKScriptMessageHandler {
 }
 
 // MARK: - WKJArgsDelegate
-extension WKJNamespace: WKJAsyncArgsDelegate {
-    func args(_ args: WKJAsyncArgs, didResolve data: Any?) {
-        resolvePromise(id: args.id, data: data, error: nil)
+extension WKJNamespace: WKJPromiseProxyDelegate {
+    func promise(_ promise: WKJPromiseProxy, didResolve data: Any?) {
+        resolvePromise(id: promise.id, data: data, error: nil)
     }
     
-    func args(_ args: WKJAsyncArgs, didReject error: Any?) {
-        resolvePromise(id: args.id, data: nil, error: error)
+    func promise(_ promise: WKJPromiseProxy, didReject error: Any?) {
+        resolvePromise(id: promise.id, data: nil, error: error)
     }
 }
