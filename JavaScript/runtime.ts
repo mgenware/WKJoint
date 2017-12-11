@@ -4,7 +4,6 @@
  * github.com/mgenware/WKJoint
  * @ 2017 Mgen
  * 
- * This is the source code of runtime.js. It should NOT be included in "Copy Bundle Resources"!
  * 
  * Inspired by http://igomobile.de/2017/03/06/wkwebview-return-a-value-from-native-code-to-javascript/
  */

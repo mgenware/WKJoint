@@ -1,0 +1,17 @@
+{
+  "name": "wkjoint",
+  "version": "1.0.0",
+  "description": "",
+  "main": "runtime.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mgen",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2",
+    "uglify-js": "^3.2.2"
+  }
+}
