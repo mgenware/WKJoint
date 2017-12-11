@@ -4,7 +4,11 @@
   "description": "",
   "main": "runtime.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "tsc",
+    "dev": "tsc -w",
+    "lint": "tslint --project tsconfig.json --config tslint.json",
+    "uglify": "uglifyjs ./dist/wkj_runtime.js -cmo ./dist/wkj_runtime.min.js",
+    "build": "yarn lint && yarn compile && yarn uglify"
   },
   "author": "Mgen",
   "license": "MIT",
