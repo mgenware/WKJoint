@@ -5,7 +5,7 @@
       "preserveConstEnums": true,
       "sourceMap": false,
       "target": "ES5",
-      "declaration": false,
+      "declaration": true,
       "strict": true,
       "noUnusedLocals": true,
       "noUnusedParameters": true,
