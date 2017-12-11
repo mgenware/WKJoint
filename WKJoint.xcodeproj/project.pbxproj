@@ -16,10 +16,10 @@
 		874262E71FD7965E0094618A /* WKJConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262E61FD7965E0094618A /* WKJConfiguration.swift */; };
 		874262EA1FD799500094618A /* WKJNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262E91FD799500094618A /* WKJNamespace.swift */; };
 		874262ED1FD7C4360094618A /* WKJRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262EC1FD7C4360094618A /* WKJRuntime.swift */; };
-		874262F61FD7C50D0094618A /* wkj_runtime.js in Resources */ = {isa = PBXBuildFile; fileRef = 874262F41FD7C50D0094618A /* wkj_runtime.js */; };
 		874262F91FD7CEB00094618A /* Playground in Resources */ = {isa = PBXBuildFile; fileRef = 874262F81FD7CEB00094618A /* Playground */; };
 		874262FB1FD7D9530094618A /* WKJArgs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262FA1FD7D9530094618A /* WKJArgs.swift */; };
 		874262FD1FD7EB380094618A /* WKJPromiseProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262FC1FD7EB380094618A /* WKJPromiseProxy.swift */; };
+		87738EA71FDE32CC00AB8858 /* wkj_runtime.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 87738EA61FDE32CC00AB8858 /* wkj_runtime.min.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,12 +34,10 @@
 		874262E61FD7965E0094618A /* WKJConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJConfiguration.swift; sourceTree = "<group>"; };
 		874262E91FD799500094618A /* WKJNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJNamespace.swift; sourceTree = "<group>"; };
 		874262EC1FD7C4360094618A /* WKJRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJRuntime.swift; sourceTree = "<group>"; };
-		874262F01FD7C48E0094618A /* tsconfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tsconfig.json; sourceTree = "<group>"; };
-		874262F41FD7C50D0094618A /* wkj_runtime.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = wkj_runtime.js; sourceTree = "<group>"; };
-		874262F51FD7C50D0094618A /* wkj_runtime.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wkj_runtime.ts; sourceTree = "<group>"; };
 		874262F81FD7CEB00094618A /* Playground */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Playground; sourceTree = "<group>"; };
 		874262FA1FD7D9530094618A /* WKJArgs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJArgs.swift; sourceTree = "<group>"; };
 		874262FC1FD7EB380094618A /* WKJPromiseProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJPromiseProxy.swift; sourceTree = "<group>"; };
+		87738EA61FDE32CC00AB8858 /* wkj_runtime.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = wkj_runtime.min.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +99,7 @@
 		874262EB1FD7A06E0094618A /* Runtime */ = {
 			isa = PBXGroup;
 			children = (
-				874262F41FD7C50D0094618A /* wkj_runtime.js */,
-				874262F51FD7C50D0094618A /* wkj_runtime.ts */,
-				874262F01FD7C48E0094618A /* tsconfig.json */,
+				87738EA61FDE32CC00AB8858 /* wkj_runtime.min.js */,
 			);
 			path = Runtime;
 			sourceTree = "<group>";
@@ -170,8 +166,8 @@
 				874262DA1FD792CF0094618A /* LaunchScreen.storyboard in Resources */,
 				874262D71FD792CF0094618A /* Assets.xcassets in Resources */,
 				874262D51FD792CF0094618A /* Main.storyboard in Resources */,
-				874262F61FD7C50D0094618A /* wkj_runtime.js in Resources */,
 				874262F91FD7CEB00094618A /* Playground in Resources */,
+				87738EA71FDE32CC00AB8858 /* wkj_runtime.min.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

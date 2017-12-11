@@ -18,7 +18,7 @@ class WKJRuntime {
     
     // returns content of runtime.js
     private static func requestRuntimeJS() -> String {
-        let path = Bundle.main.path(forResource: "wkj_runtime", ofType: "js")!
+        let path = Bundle.main.path(forResource: "wkj_runtime.min", ofType: "js")!
         let runtimeJS = try! String(contentsOfFile: path, encoding: .utf8)
         
         return runtimeJS
