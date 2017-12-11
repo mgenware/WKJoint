@@ -88,7 +88,10 @@ class WKJointRuntime {
   }
 }
 
-// const wind = window as any;
-// if (!wind.__WKJoint) {
-//   wind.__WKJoint = new WKJointRuntime();
-// }
+(() => {
+  // tslint:disable-next-line no-any
+  const wind = window as any;
+  if (!wind.__WKJoint) {
+    wind.__WKJoint = new WKJointRuntime();
+  }
+})();
