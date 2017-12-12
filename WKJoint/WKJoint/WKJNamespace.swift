@@ -51,7 +51,7 @@ class WKJNamespace: NSObject {
     }
     
     // adds an async style func to this namespace
-    func addAsycFunc(_ name: String, _ fn: @escaping WKJAsyncFunc) {
+    func addAsyncFunc(_ name: String, _ fn: @escaping WKJAsyncFunc) {
         checkNotExist(fnName: name)
         funcs[name] = AsyncFunc(name: name, value: fn)
     }
