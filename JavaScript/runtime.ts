@@ -26,9 +26,17 @@ class WKJCall {
 }
 
 class WKJointRuntime {
+  // tslint:disable-next-line no-any
+  webkit: any|null;
   devMode: boolean;
   promises: { [id: string]: DelayedPromise<object>; } = {};
   private promiseCounter: number = 0;
+
+  constructor() {
+    // tslint:disable-next-line no-any
+    const wind = window as any;
+    this.webkit = wind.webkit;
+  }
 
   beginPromise(ns: string|null, func: string|null, arg: object): Promise<object>|null {
     if (!ns || !func) {
@@ -43,10 +51,8 @@ class WKJointRuntime {
       this.log(`BeginPromise: ${ns}.${func} [${id}]`);
 
       try {
-        // tslint:disable-next-line no-any
-        const wind = window as any;
-        if (wind.webkit && wind.webkit.messageHandlers) {
-          const handler = wind.webkit.messageHandlers[ns];
+        if (this.webkit && this.webkit.messageHandlers) {
+          const handler = this.webkit.messageHandlers[ns];
           if (handler && typeof handler.postMessage === 'function') {
             const call = new WKJCall(id, func, arg);
             handler.postMessage(call);
