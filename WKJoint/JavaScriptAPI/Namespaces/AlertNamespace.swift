@@ -16,26 +16,25 @@ class AlertNamespace: WKJNamespace {
     }
 
     private func sheetAsync(args: WKJArgs, promise: WKJPromiseProxy) {
-        let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        // create UIAlertController
+        let actionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
+        // add actions
         let firstAction: UIAlertAction = UIAlertAction(title: "First", style: .default) { action -> Void in
             promise.resolve("You tapped First")
         }
-        
         let secondAction: UIAlertAction = UIAlertAction(title: "Second", style: .default) { action -> Void in
-            
             promise.resolve("You tapped Second")
         }
-        
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
             promise.reject("Action cancelled")
         }
-        
         actionSheetController.addAction(firstAction)
         actionSheetController.addAction(secondAction)
         actionSheetController.addAction(cancelAction)
         
-        let appDelegate  = UIApplication.shared.delegate as! AppDelegate
+        // display the action sheet
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let viewController = appDelegate.window!.rootViewController as! ViewController
         viewController.present(actionSheetController, animated: true, completion: nil)
     }
