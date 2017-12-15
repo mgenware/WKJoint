@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-      "module": "system",
+      "module": "es2015",
       "removeComments": true,
       "preserveConstEnums": true,
       "sourceMap": false,
@@ -12,9 +12,13 @@
       "lib": [
         "dom", "es5", "es6", "scripthost"
       ],
-      "outFile": "dist/wkj_runtime.js"
+      "baseUrl": "lib"
   },
-  "files": [
-    "runtime.ts"
+  "include": [
+    "lib/**/*",
+    "test"
+  ],
+  "exclude": [
+      "node_modules"
   ]
 }
