@@ -1,59 +1,93 @@
 # WKJoint
+
 JavaScript to Native(Swift) Bridge
 
 ## Features
-* `Promise` support in JavaScript side.
-* Allows to define client function in both async and sync ways.
-* Custom UA(User agent) support.
 
-## Sample
-Call the API on JavaScript side:
+* `Promise` based API in JavaScript side.
+* Runtime automatically injected to WebView, no need to import extra script files.
+* Define native implementations in both async and sync ways.
+* Custom user agent support.
+
+## Example
+JavaScript side:
 ```javascript
-window.__WKJoint.beginPromise('json', 'parseAsync', { value: '{ "name": "Mgen", "id": 1 }' })
+const api = window.MyJavaScriptAPI;
+if (api) {
+  // call a math.add function implemented in native side
+  api.math.add({
+    x: -3, y: 120,
+  })
   .then((res) => {
     console.log(`Succeeded: ${res}`);
   })
   .catch((err) => {
     console.log(`Error occurred: ${err}`);
   });
-```
 
-Expose an API in native side:
-```swift
-// define the namespace
-let jsonNS = WKJNamespace(name: "json")
-// define a function in an async way
-jsonNS.addAsycFunc("parseAsync") { (args) in
-    // promise is considered settled either by resolve or reject
-    guard let str = args["value"] as? String else {
-        args.reject("Invalid argument")
-        return
-    }
-    // wait 3 secs
-    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-        guard let data = str.data(using: .utf8) else {
-            args.reject("Encoding error")
-            return
-        }
-        
-        do {
-            let obj = try JSONSerialization.jsonObject(with: data, options: [])
-            args.resolve(obj)
-        } catch {
-            args.reject(error)
-        }
-    })
+  // display an iOS action sheet
+  api.alert.sheetAsync()
+  .then((res) => {
+    console.log(`Succeeded: ${res}`);
+  })
+  .catch((err) => {
+    console.log(`Error occurred: ${err}`);
+  });
 }
 
-// define a function in a sync way
-jsonNS.addFunc("parse") { (args) -> Any? in
-    // either return a value or throw an error indicating something goes wrong
-    guard let str = args["value"] as? String else {
-        throw MyError.RuntimeError("value is not a valid string")
+```
+
+Native side:
+```swift
+// implement math.add in sync style
+class MathNamespace: WKJNamespace {
+    init() {
+        super.init(name: "math")
+        
+        addFunc("add", add)
     }
-    guard let data = str.data(using: .utf8) else {
-        throw MyError.RuntimeError("Invalid data")
+    
+    private func add(args: WKJArgs) throws -> Any? {
+        guard let x = args["x"] as? Int64 else {
+            throw WKJError("x is not a valid number")
+        }
+        guard let y = args["y"] as? Int64 else {
+            throw WKJError("y is not a valid number")
+        }
+        return x + y
     }
-    return try JSONSerialization.jsonObject(with: data, options: [])
+}
+
+// implement alert.sheetAsync in async style
+class AlertNamespace: WKJNamespace {
+    init() {
+        super.init(name: "alert")
+        
+        addAsyncFunc("sheetAsync", sheetAsync)
+    }
+
+    private func sheetAsync(args: WKJArgs, promise: WKJPromiseProxy) {
+        // create UIAlertController
+        let actionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        // add actions
+        let firstAction: UIAlertAction = UIAlertAction(title: "First", style: .default) { action -> Void in
+            promise.resolve("You tapped First")
+        }
+        let secondAction: UIAlertAction = UIAlertAction(title: "Second", style: .default) { action -> Void in
+            promise.resolve("You tapped Second")
+        }
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+            promise.reject("Action cancelled")
+        }
+        actionSheetController.addAction(firstAction)
+        actionSheetController.addAction(secondAction)
+        actionSheetController.addAction(cancelAction)
+        
+        // display the action sheet
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let viewController = appDelegate.window!.rootViewController as! ViewController
+        viewController.present(actionSheetController, animated: true, completion: nil)
+    }
 }
 ```
