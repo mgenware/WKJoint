@@ -21,12 +21,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         setupWebView()
-        
-        WKJUserAgent.updateUserAgent(webView: webView)
-        
-        let url = Bundle.main.url(forResource: "playground", withExtension: "html", subdirectory: "Playground")
-        let htmlString = try! String(contentsOf: url!, encoding: .utf8)
-        webView.loadHTMLString(htmlString, baseURL: Bundle.main.bundleURL.appendingPathComponent("Playground", isDirectory: true))
+        loadDemoPage()
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,50 +30,31 @@ class ViewController: UIViewController {
     }
 
     func setupWebView() {
+        // view-related
         webView = WKWebView(frame: view.bounds)
         view.addSubview(webView)
         
+        // implement UI Delegate
         webView.uiDelegate = self
         
-        let jsonNS = WKJNamespace(name: "json")
-        jsonNS.addAsyncFunc("parseAsync") { (args, promise) in
-            guard let str = args["value"] as? String else {
-                promise.reject("Invalid argument")
-                return
-            }
-            // wait 3 sec
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                guard let data = str.data(using: .utf8) else {
-                    promise.reject("Encoding error")
-                    return
-                }
-                
-                do {
-                    let obj = try JSONSerialization.jsonObject(with: data, options: [])
-                    promise.resolve(obj)
-                } catch {
-                    promise.reject(error)
-                }
-            })
-        }
+        // setup custom user agent
+        WKJUserAgent.updateUserAgent(webView: webView)
         
-        jsonNS.addFunc("parse") { (args) -> Any? in
-            guard let str = args["value"] as? String else {
-                throw MyError.RuntimeError("value is not a valid string")
-            }
-            guard let data = str.data(using: .utf8) else {
-                throw MyError.RuntimeError("Invalid data")
-            }
-            return try JSONSerialization.jsonObject(with: data, options: [])
-        }
-        
-        let wkjConfig = WKJConfiguration()
-        wkjConfig.addNamespaces([jsonNS])
-        wkjConfig.addToWebView(webView)
-        webView.configuration.userContentController.addUserScript(WKJRuntime.wkUserScript())
+        // setup JavaScript APIs
+        let jsAPIEnv = MyJavaScriptAPIEnv(webView: webView)
+        jsAPIEnv.setupEnv(namespaces: [AlertNamespace(), MathNamespace()])
     }
 }
 
+extension ViewController {
+    private func loadDemoPage() {
+        let url = Bundle.main.url(forResource: "playground", withExtension: "html", subdirectory: "DemoPage")
+        let htmlString = try! String(contentsOf: url!, encoding: .utf8)
+        webView.loadHTMLString(htmlString, baseURL: Bundle.main.bundleURL.appendingPathComponent("DemoPage", isDirectory: true))
+    }
+}
+
+// Mark: - WKUIDelegate
 extension ViewController: WKUIDelegate {
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo,
                  completionHandler: @escaping () -> Void) {

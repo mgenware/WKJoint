@@ -16,9 +16,9 @@ class WKJRuntime {
         return WKUserScript(source: runtimeJS, injectionTime: .atDocumentStart, forMainFrameOnly: true)
     }
     
-    // returns content of runtime.js
+    // returns the content of runtime.js
     private static func requestRuntimeJS() -> String {
-        let path = Bundle.main.path(forResource: "wkj_runtime.min", ofType: "js")!
+        let path = Bundle.main.path(forResource: "js_api_bundle", ofType: "js")!
         let runtimeJS = try! String(contentsOfFile: path, encoding: .utf8)
         
         return runtimeJS

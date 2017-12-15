@@ -39,13 +39,15 @@
     <h2>UA</h2>
     <p id="ua-row"></p>
 
-    <h2>Runtime</h2>
+    <h2>Runtime Object</h2>
     <p id="rt-row"></p>
+    <h2>API Object</h2>
+    <p id="api-row"></p>
 
-    <button class="btn" id="btnTestAsync">json.parseAsync</button><br>
-    <button class="btn" id="btnTestAsyncErr">json.parseAsync with error</button><br>
-    <button class="btn" id="btnTestSync">json.parse</button><br>
-    <button class="btn" id="btnTestSyncErr">json.parse with error</button><br>
+    <button class="btn" id="btnTestAsync">Async Func</button><br>
+    <button class="btn" id="btnTestSync">Sync Func</button><br>
+    <button class="btn" id="btnTestCustomErr">Custom Error</button><br>
+    <button class="btn" id="btnTestFuncNotFound">Undefined Func</button><br>
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script>
@@ -58,18 +60,21 @@
       }
       $('#ua-row').text(navigator.userAgent);
       $('#rt-row').text(!!window.__WKJoint ? 'Injected' : 'Not found');
+      $('#api-row').text(!!window.MyJavaScriptAPI ? 'Injected' : 'Not found');
+
+      var api = window.MyJavaScriptAPI;
 
       $('#btnTestAsync').click(function(e) {
-        handlePromise(window.__WKJoint.beginPromise('json', 'parseAsync', { value: '{ "name": "Mgen", "id": 1 }' }));
-      });
-      $('#btnTestAsyncErr').click(function(e) {
-        handlePromise(window.__WKJoint.beginPromise('json', 'parseAsync', { value: '{{{' }));
+        handlePromise(api.alert.sheetAsync());
       });
       $('#btnTestSync').click(function(e) {
-        handlePromise(window.__WKJoint.beginPromise('json', 'parse', { value: '{ "name": "Mgen", "id": 1 }' }));
+        handlePromise(api.math.add({ x: -1, y: 4 }));
       });
-      $('#btnTestSyncErr').click(function(e) {
-        handlePromise(window.__WKJoint.beginPromise('json', 'parse', { value: '{{{' }));
+      $('#btnTestCustomErr').click(function(e) {
+        handlePromise(api.math.add({ x: 'sssss' }));
+      });
+      $('#btnTestFuncNotFound').click(function(e) {
+        handlePromise(api.alert._FUNC_NOT_FOUND_);
       });
     </script>
   </body>
