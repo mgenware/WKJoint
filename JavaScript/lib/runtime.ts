@@ -1,7 +1,7 @@
  /*************************************************************************
  *
  * WKJoint Runtime.ts
- * github.com/mgenware/WKJoint
+ * https://github.com/mgenware/WKJoint
  * @ 2017 Mgen
  *
  *
@@ -9,12 +9,12 @@
  */
 
  // Any data returned from client will conform to IClientData interface
-interface IClientData {
+export interface IClientData {
   default: object;
 }
 
  // Pending promise object tracked in context
-class DelayedPromise<T> {
+export class DelayedPromise<T> {
   constructor(
     public resolve: (value?: T | PromiseLike<T>) => void,
     public reject: (reason?: object) => void,
@@ -25,7 +25,7 @@ class WKJCall {
   constructor(public promiseID: string, public func: string, public arg: object) {}
 }
 
-class WKJointRuntime {
+export default class WKJointRuntime {
   // tslint:disable-next-line no-any
   webkit: any|null;
   devMode: boolean;
@@ -38,10 +38,11 @@ class WKJointRuntime {
     this.webkit = wind.webkit;
   }
 
-  beginPromise(ns: string|null, func: string|null, arg: object): Promise<object>|null {
+  beginPromise(ns: string|null, func: string|null, arg: object): Promise<object> {
     if (!ns || !func) {
-      this.log(`BeginPromise: argument null: ${ns}.${func}`);
-      return null;
+      const reason = `BeginPromise: argument null: ${ns}.${func}`;
+      this.log(reason);
+      return Promise.reject(reason);
     }
 
     const promise = new Promise((resolve, reject) => {
