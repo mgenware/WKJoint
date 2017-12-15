@@ -7,7 +7,6 @@
     "compile": "tsc",
     "dev": "tsc -w",
     "lint": "tslint --project tsconfig.json --config tslint.json",
-    "uglify": "uglifyjs ./dist/wkj_runtime.js -cmo ./dist/wkj_runtime.min.js",
     "build": "yarn lint && rollup -c"
   },
   "author": "Mgen",
@@ -15,7 +14,6 @@
   "dependencies": {},
   "devDependencies": {
     "rollup": "^0.52.1",
-    "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-typescript2": "^0.8.4",
     "rollup-plugin-uglify": "^2.0.1",
     "tslint": "^5.8.0",
