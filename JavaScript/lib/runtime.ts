@@ -26,19 +26,17 @@ class WKJCall {
 }
 
 export default class WKJointRuntime {
-  // tslint:disable-next-line no-any
   webkit: any|null;
   devMode: boolean;
   promises: { [id: string]: DelayedPromise<object>; } = {};
   private promiseCounter: number = 0;
 
   constructor() {
-    // tslint:disable-next-line no-any
     const wind = window as any;
     this.webkit = wind.webkit;
   }
 
-  beginPromise(ns: string|null, func: string|null, arg: object): Promise<object> {
+  beginPromise(ns: string|null, func: string|null, arg: object): Promise<any> {
     if (!ns || !func) {
       const reason = `BeginPromise: argument null: ${ns}.${func}`;
       this.log(reason);
@@ -94,11 +92,3 @@ export default class WKJointRuntime {
     }
   }
 }
-
-(() => {
-  // tslint:disable-next-line no-any
-  const wind = window as any;
-  if (!wind.__WKJoint) {
-    wind.__WKJoint = new WKJointRuntime();
-  }
-})();
