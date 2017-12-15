@@ -36,7 +36,7 @@ export default class WKJointRuntime {
     this.webkit = wind.webkit;
   }
 
-  beginPromise(ns: string|null, func: string|null, arg: object): Promise<any> {
+  beginPromise(ns: string|null, func: string|null, arg: object|null): Promise<any> {
     if (!ns || !func) {
       const reason = `BeginPromise: argument null: ${ns}.${func}`;
       this.log(reason);
@@ -53,7 +53,7 @@ export default class WKJointRuntime {
         if (this.webkit && this.webkit.messageHandlers) {
           const handler = this.webkit.messageHandlers[ns];
           if (handler && typeof handler.postMessage === 'function') {
-            const call = new WKJCall(id, func, arg);
+            const call = new WKJCall(id, func, arg || {});
             handler.postMessage(call);
           }
         }
