@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A0EF1F91FE5873300456285 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0EF1F81FE5873300456285 /* WebViewController.swift */; };
 		5AC564591FE45B86000B9514 /* js_api_bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = 5AC564581FE45B86000B9514 /* js_api_bundle.js */; };
 		5AC5645D1FE45C0F000B9514 /* MathNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC5645C1FE45C0F000B9514 /* MathNamespace.swift */; };
 		5AC5645F1FE460BA000B9514 /* WKJError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC5645E1FE460BA000B9514 /* WKJError.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A0EF1F81FE5873300456285 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		5AC564581FE45B86000B9514 /* js_api_bundle.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = js_api_bundle.js; sourceTree = "<group>"; };
 		5AC5645C1FE45C0F000B9514 /* MathNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathNamespace.swift; sourceTree = "<group>"; };
 		5AC5645E1FE460BA000B9514 /* WKJError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJError.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				874262E11FD792DB0094618A /* WKJoint */,
 				874262CF1FD792CF0094618A /* AppDelegate.swift */,
 				874262D11FD792CF0094618A /* ViewController.swift */,
+				5A0EF1F81FE5873300456285 /* WebViewController.swift */,
 				874262D31FD792CF0094618A /* Main.storyboard */,
 				874262D61FD792CF0094618A /* Assets.xcassets */,
 				874262D81FD792CF0094618A /* LaunchScreen.storyboard */,
@@ -217,6 +220,7 @@
 				874262D01FD792CF0094618A /* AppDelegate.swift in Sources */,
 				5AC5645F1FE460BA000B9514 /* WKJError.swift in Sources */,
 				874262EA1FD799500094618A /* WKJNamespace.swift in Sources */,
+				5A0EF1F91FE5873300456285 /* WebViewController.swift in Sources */,
 				874262ED1FD7C4360094618A /* WKJRuntime.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
