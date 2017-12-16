@@ -91,3 +91,16 @@ class AlertNamespace: WKJNamespace {
     }
 }
 ```
+
+## JavaScript Runtime
+
+### Building the Runtime
+To build the JavaScript runtime, navigate to `JavaScript` folder, run:
+```sh
+# install dependencies
+yarn
+# start building
+yarn build
+```
+
+Rollup.js is used to bundle all TypeScript files to `dist/js_api_bundle.js`. TypeScript definition files are also generated to `dist` folder.
