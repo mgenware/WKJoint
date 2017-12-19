@@ -9,20 +9,7 @@
 import UIKit
 import WebKit
 
-class MyJavaScriptAPIEnv {
-    var webView: WKWebView!
+class MyJavaScriptAPI {
     
-    init(webView: WKWebView) {
-        self.webView = webView
-    }
-    
-    func setupEnv(namespaces: [WKJNamespace]) {
-        // setup namespaces
-        let apiStore = WKJAPIStore()
-        apiStore.addNamespaces(namespaces)
-        apiStore.mount(webView)
-       
-        // inject runtime script
-        webView.configuration.userContentController.addUserScript(WKJRuntime.wkUserScript())
-    }
+
 }

@@ -12,10 +12,12 @@ import UIKit
 class WKJArgs {
     let id: String
     let dictionary: [String: Any];
+    weak var context: WKJContextProtocol?
     
-    init(id: String, dictionary: [String: Any]) {
+    init(id: String, dictionary: [String: Any], context: WKJContextProtocol?) {
         self.id = id
         self.dictionary = dictionary
+        self.context = context
     }
     
     subscript(key: String) -> Any? {

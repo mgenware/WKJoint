@@ -30,10 +30,10 @@ class WKJAPIStore {
     }
     
     // mounts all namespaces to WebView's configuration controller
-    func mount(_ webView: WKWebView) {
+    func mount(_ context: WKJContextProtocol) {
         for (key, namespace) in nsMap {
-            let scriptHandler = WKJScriptMessageHandler(webView: webView, namespace: namespace)
-            webView.configuration.userContentController.add(scriptHandler, name: key)
+            let scriptHandler = WKJScriptMessageHandler(context: context, namespace: namespace)
+            context.webViewInstance.configuration.userContentController.add(scriptHandler, name: key)
         }
     }
 }

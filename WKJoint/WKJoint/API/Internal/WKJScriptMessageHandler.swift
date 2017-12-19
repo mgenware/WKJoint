@@ -22,11 +22,11 @@ class WKJScriptMessageHandler: NSObject {
     // readonly props
     let namespace: WKJNamespace
     // weak props
-    weak var webView: WKWebView?
+    weak var context: WKJContextProtocol?
     weak var delegate: WKJScriptMessageHandlerDelegate?
     
-    init(webView: WKWebView, namespace: WKJNamespace) {
-        self.webView = webView
+    init(context: WKJContextProtocol, namespace: WKJNamespace) {
+        self.context = context
         self.namespace = namespace
     }
 }
@@ -55,7 +55,7 @@ extension WKJScriptMessageHandler: WKScriptMessageHandler {
         }
         
         let bodyDictionary = body["arg"] as? [String: Any] ?? [:]
-        let args = WKJArgs(id: promiseID, dictionary: bodyDictionary)
+        let args = WKJArgs(id: promiseID, dictionary: bodyDictionary, context: context)
         if fn is SyncFunc {
             let syncFn = fn as! SyncFunc
             do {
@@ -81,7 +81,7 @@ extension WKJScriptMessageHandler {
         let errorJS = dataToJSON(error)
         let js = "window.__WKJoint.endPromise(\"\(id)\", \(dataJS), \(errorJS))"
         
-        guard let webView = webView else {
+        guard let webView = context?.webViewInstance else {
             assertionFailure("WebView is nil")
             return
         }

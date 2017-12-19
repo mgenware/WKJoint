@@ -37,9 +37,6 @@ class WebViewController: ViewController {
         // setup custom user agent
         WKJUserAgent.updateUserAgent(webView: webView)
         
-        // setup JavaScript APIs
-        let jsAPIEnv = MyJavaScriptAPIEnv(webView: webView)
-        jsAPIEnv.setupEnv(namespaces: [AlertNamespace(), MathNamespace()])
     }
     
     deinit {
@@ -54,6 +51,17 @@ extension WebViewController {
         let htmlString = try! String(contentsOf: url!, encoding: .utf8)
         webView.loadHTMLString(htmlString, baseURL: Bundle.main.bundleURL.appendingPathComponent("DemoPage", isDirectory: true))
     }
+}
+
+extension WebViewController: WKJContextProtocol {
+    var viewControllerInstance: UIViewController? {
+        return self
+    }
+    
+    var webViewInstance: WKWebView {
+        return webView
+    }
+    
 }
 
 // Mark: - WKUIDelegate
