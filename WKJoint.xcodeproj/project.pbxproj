@@ -115,14 +115,10 @@
 		874262E11FD792DB0094618A /* WKJoint */ = {
 			isa = PBXGroup;
 			children = (
+				87D341D81FE8EC0100E575D4 /* API */,
 				874262EB1FD7A06E0094618A /* Runtime */,
 				874262E21FD793C70094618A /* WKJUserAgent.swift */,
-				874262E61FD7965E0094618A /* WKJConfiguration.swift */,
 				874262EC1FD7C4360094618A /* WKJRuntime.swift */,
-				874262E91FD799500094618A /* WKJNamespace.swift */,
-				874262FA1FD7D9530094618A /* WKJArgs.swift */,
-				874262FC1FD7EB380094618A /* WKJPromiseProxy.swift */,
-				5AC5645E1FE460BA000B9514 /* WKJError.swift */,
 			);
 			path = WKJoint;
 			sourceTree = "<group>";
@@ -133,6 +129,18 @@
 				5AC564581FE45B86000B9514 /* js_api_bundle.js */,
 			);
 			path = Runtime;
+			sourceTree = "<group>";
+		};
+		87D341D81FE8EC0100E575D4 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				5AC5645E1FE460BA000B9514 /* WKJError.swift */,
+				874262E91FD799500094618A /* WKJNamespace.swift */,
+				874262FA1FD7D9530094618A /* WKJArgs.swift */,
+				874262FC1FD7EB380094618A /* WKJPromiseProxy.swift */,
+				874262E61FD7965E0094618A /* WKJConfiguration.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
