@@ -37,6 +37,13 @@ class WebViewController: ViewController {
         // setup custom user agent
         WKJUserAgent.updateUserAgent(webView: webView)
         
+        // setup JavaScript APIs
+        let namespaces = [AlertNamespace(), MathNamespace()]
+        let apiStore = WKJAPIStore(namespaces: namespaces)
+        apiStore.mount(self)
+        
+        // inject runtime files
+        webView.configuration.userContentController.addUserScript(WKJRuntime.wkUserScript())
     }
     
     deinit {

@@ -13,15 +13,8 @@ class WKJAPIStore {
     // stores all namespace objects, you should not use this property directly
     private var nsMap: [String: WKJNamespace] = [String: WKJNamespace]()
     
-    // adds a list of namespaces to internal map
-    func addNamespaces(_ namespaces: [WKJNamespace]) {
-        for ns in namespaces {
-            if nsMap[ns.name] != nil {
-                assertionFailure("The namespace \"\(ns.name)\" is added twice")
-            }
-            
-            nsMap[ns.name] = ns
-        }
+    init(namespaces: [WKJNamespace]) {
+        addNamespaces(namespaces)
     }
     
     // returns a namespace by a given key
@@ -38,3 +31,16 @@ class WKJAPIStore {
     }
 }
 
+// MARK: - Private funcs
+extension WKJAPIStore {
+    // adds a list of namespaces to internal map
+    func addNamespaces(_ namespaces: [WKJNamespace]) {
+        for ns in namespaces {
+            if nsMap[ns.name] != nil {
+                assertionFailure("The namespace \"\(ns.name)\" is added twice")
+            }
+            
+            nsMap[ns.name] = ns
+        }
+    }
+}
