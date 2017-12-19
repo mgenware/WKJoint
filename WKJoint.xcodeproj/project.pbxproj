@@ -12,7 +12,6 @@
 		5AC5645D1FE45C0F000B9514 /* MathNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC5645C1FE45C0F000B9514 /* MathNamespace.swift */; };
 		5AC5645F1FE460BA000B9514 /* WKJError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC5645E1FE460BA000B9514 /* WKJError.swift */; };
 		5AC564611FE46302000B9514 /* AlertNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC564601FE46302000B9514 /* AlertNamespace.swift */; };
-		5AC564631FE468DB000B9514 /* MyJavaScriptAPIEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC564621FE468DB000B9514 /* MyJavaScriptAPIEnv.swift */; };
 		874262D01FD792CF0094618A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262CF1FD792CF0094618A /* AppDelegate.swift */; };
 		874262D21FD792CF0094618A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262D11FD792CF0094618A /* ViewController.swift */; };
 		874262D51FD792CF0094618A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 874262D31FD792CF0094618A /* Main.storyboard */; };
@@ -37,7 +36,6 @@
 		5AC5645C1FE45C0F000B9514 /* MathNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathNamespace.swift; sourceTree = "<group>"; };
 		5AC5645E1FE460BA000B9514 /* WKJError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJError.swift; sourceTree = "<group>"; };
 		5AC564601FE46302000B9514 /* AlertNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertNamespace.swift; sourceTree = "<group>"; };
-		5AC564621FE468DB000B9514 /* MyJavaScriptAPIEnv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyJavaScriptAPIEnv.swift; sourceTree = "<group>"; };
 		874262CC1FD792CF0094618A /* WKJoint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WKJoint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		874262CF1FD792CF0094618A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		874262D11FD792CF0094618A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,7 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				5AC5645B1FE45C03000B9514 /* Namespaces */,
-				5AC564621FE468DB000B9514 /* MyJavaScriptAPIEnv.swift */,
 			);
 			path = JavaScriptAPI;
 			sourceTree = "<group>";
@@ -241,7 +238,6 @@
 				5AC564611FE46302000B9514 /* AlertNamespace.swift in Sources */,
 				874262D21FD792CF0094618A /* ViewController.swift in Sources */,
 				5AC5645D1FE45C0F000B9514 /* MathNamespace.swift in Sources */,
-				5AC564631FE468DB000B9514 /* MyJavaScriptAPIEnv.swift in Sources */,
 				874262E71FD7965E0094618A /* WKJAPIStore.swift in Sources */,
 				874262E31FD793C70094618A /* WKJUserAgent.swift in Sources */,
 				87D341DD1FE8F6F100E575D4 /* WKJIncomingCallError.swift in Sources */,
