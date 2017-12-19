@@ -70,6 +70,7 @@
 		5AC5645A1FE45BA3000B9514 /* JavaScriptAPI */ = {
 			isa = PBXGroup;
 			children = (
+				874262EB1FD7A06E0094618A /* Runtime */,
 				5AC5645B1FE45C03000B9514 /* Namespaces */,
 			);
 			path = JavaScriptAPI;
@@ -121,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				87D341D81FE8EC0100E575D4 /* API */,
-				874262EB1FD7A06E0094618A /* Runtime */,
 				874262E21FD793C70094618A /* WKJUserAgent.swift */,
 				874262EC1FD7C4360094618A /* WKJRuntime.swift */,
 				87D341E01FE8FDE900E575D4 /* WKJContextProtocol.swift */,
