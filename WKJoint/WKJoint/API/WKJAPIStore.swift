@@ -1,5 +1,5 @@
 //
-//  WKJConfiguration.swift
+//  WKJAPIStore.swift
 //  WKJoint
 //
 //  Created by Mgen on 9/21/17.
@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class WKJConfiguration {
+class WKJAPIStore {
     // stores all namespace objects, you should not use this property directly
     private var nsMap: [String: WKJNamespace] = [String: WKJNamespace]()
     
@@ -30,7 +30,7 @@ class WKJConfiguration {
     }
     
     // mounts all namespaces to WebView's configuration controller
-    func addToWebView(_ webView: WKWebView) {
+    func mount(_ webView: WKWebView) {
         for (key, val) in nsMap {
             val.delegate = webView
             webView.configuration.userContentController.add(val, name: key)
@@ -38,7 +38,7 @@ class WKJConfiguration {
     }
 }
 
-// MARK: WKJNamespaceDelegate
+// MARK: - WKJNamespaceDelegate
 extension WKWebView: WKJNamespaceDelegate {
     func namespace(_ namespace: WKJNamespace, didRequestJavaScriptCall js: String) {
         evaluateJavaScript(js, completionHandler: { (_, error) in

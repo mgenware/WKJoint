@@ -19,12 +19,14 @@
 		874262D71FD792CF0094618A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 874262D61FD792CF0094618A /* Assets.xcassets */; };
 		874262DA1FD792CF0094618A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 874262D81FD792CF0094618A /* LaunchScreen.storyboard */; };
 		874262E31FD793C70094618A /* WKJUserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262E21FD793C70094618A /* WKJUserAgent.swift */; };
-		874262E71FD7965E0094618A /* WKJConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262E61FD7965E0094618A /* WKJConfiguration.swift */; };
+		874262E71FD7965E0094618A /* WKJAPIStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262E61FD7965E0094618A /* WKJAPIStore.swift */; };
 		874262EA1FD799500094618A /* WKJNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262E91FD799500094618A /* WKJNamespace.swift */; };
 		874262ED1FD7C4360094618A /* WKJRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262EC1FD7C4360094618A /* WKJRuntime.swift */; };
 		874262F91FD7CEB00094618A /* DemoPage in Resources */ = {isa = PBXBuildFile; fileRef = 874262F81FD7CEB00094618A /* DemoPage */; };
 		874262FB1FD7D9530094618A /* WKJArgs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262FA1FD7D9530094618A /* WKJArgs.swift */; };
 		874262FD1FD7EB380094618A /* WKJPromiseProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874262FC1FD7EB380094618A /* WKJPromiseProxy.swift */; };
+		87D341DB1FE8EED000E575D4 /* WKJScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D341DA1FE8EED000E575D4 /* WKJScriptMessageHandler.swift */; };
+		87D341DD1FE8F6F100E575D4 /* WKJIncomingCallError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D341DC1FE8F6F100E575D4 /* WKJIncomingCallError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,12 +44,14 @@
 		874262D91FD792CF0094618A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		874262DB1FD792CF0094618A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		874262E21FD793C70094618A /* WKJUserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJUserAgent.swift; sourceTree = "<group>"; };
-		874262E61FD7965E0094618A /* WKJConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJConfiguration.swift; sourceTree = "<group>"; };
+		874262E61FD7965E0094618A /* WKJAPIStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJAPIStore.swift; sourceTree = "<group>"; };
 		874262E91FD799500094618A /* WKJNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJNamespace.swift; sourceTree = "<group>"; };
 		874262EC1FD7C4360094618A /* WKJRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJRuntime.swift; sourceTree = "<group>"; };
 		874262F81FD7CEB00094618A /* DemoPage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DemoPage; sourceTree = "<group>"; };
 		874262FA1FD7D9530094618A /* WKJArgs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJArgs.swift; sourceTree = "<group>"; };
 		874262FC1FD7EB380094618A /* WKJPromiseProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJPromiseProxy.swift; sourceTree = "<group>"; };
+		87D341DA1FE8EED000E575D4 /* WKJScriptMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJScriptMessageHandler.swift; sourceTree = "<group>"; };
+		87D341DC1FE8F6F100E575D4 /* WKJIncomingCallError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJIncomingCallError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,13 +138,23 @@
 		87D341D81FE8EC0100E575D4 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				87D341D91FE8EEBF00E575D4 /* Internal */,
 				5AC5645E1FE460BA000B9514 /* WKJError.swift */,
 				874262E91FD799500094618A /* WKJNamespace.swift */,
 				874262FA1FD7D9530094618A /* WKJArgs.swift */,
 				874262FC1FD7EB380094618A /* WKJPromiseProxy.swift */,
-				874262E61FD7965E0094618A /* WKJConfiguration.swift */,
+				874262E61FD7965E0094618A /* WKJAPIStore.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		87D341D91FE8EEBF00E575D4 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				87D341DA1FE8EED000E575D4 /* WKJScriptMessageHandler.swift */,
+				87D341DC1FE8F6F100E575D4 /* WKJIncomingCallError.swift */,
+			);
+			path = Internal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,12 +235,14 @@
 				874262D21FD792CF0094618A /* ViewController.swift in Sources */,
 				5AC5645D1FE45C0F000B9514 /* MathNamespace.swift in Sources */,
 				5AC564631FE468DB000B9514 /* MyJavaScriptAPIEnv.swift in Sources */,
-				874262E71FD7965E0094618A /* WKJConfiguration.swift in Sources */,
+				874262E71FD7965E0094618A /* WKJAPIStore.swift in Sources */,
 				874262E31FD793C70094618A /* WKJUserAgent.swift in Sources */,
+				87D341DD1FE8F6F100E575D4 /* WKJIncomingCallError.swift in Sources */,
 				874262FB1FD7D9530094618A /* WKJArgs.swift in Sources */,
 				874262FD1FD7EB380094618A /* WKJPromiseProxy.swift in Sources */,
 				874262D01FD792CF0094618A /* AppDelegate.swift in Sources */,
 				5AC5645F1FE460BA000B9514 /* WKJError.swift in Sources */,
+				87D341DB1FE8EED000E575D4 /* WKJScriptMessageHandler.swift in Sources */,
 				874262EA1FD799500094618A /* WKJNamespace.swift in Sources */,
 				5A0EF1F91FE5873300456285 /* WebViewController.swift in Sources */,
 				874262ED1FD7C4360094618A /* WKJRuntime.swift in Sources */,
