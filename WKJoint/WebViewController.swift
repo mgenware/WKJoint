@@ -47,7 +47,7 @@ class WebViewController: ViewController {
     }
     
     deinit {
-        print("WebViewController deinited")
+        print("🎉🎉🎉 WebViewController deinited")
     }
 
 }
