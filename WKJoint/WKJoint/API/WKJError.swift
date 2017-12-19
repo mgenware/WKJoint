@@ -10,14 +10,17 @@ import UIKit
 
 class WKJError: LocalizedError {
     private var msg: String
+    
     init(_ msg: String) {
         self.msg = msg
     }
+    
     var description: String {
         get {
             return msg
         }
     }
+    
     var errorDescription: String? {
         get {
             return self.description
