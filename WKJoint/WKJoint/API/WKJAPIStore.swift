@@ -31,20 +31,10 @@ class WKJAPIStore {
     
     // mounts all namespaces to WebView's configuration controller
     func mount(_ webView: WKWebView) {
-        for (key, val) in nsMap {
-            val.delegate = webView
-            webView.configuration.userContentController.add(val, name: key)
+        for (key, namespace) in nsMap {
+            let scriptHandler = WKJScriptMessageHandler(webView: webView, namespace: namespace)
+            webView.configuration.userContentController.add(scriptHandler, name: key)
         }
     }
 }
 
-// MARK: - WKJNamespaceDelegate
-extension WKWebView: WKJNamespaceDelegate {
-    func namespace(_ namespace: WKJNamespace, didRequestJavaScriptCall js: String) {
-        evaluateJavaScript(js, completionHandler: { (_, error) in
-            if let error = error {
-                print("Error occurred in WKJConfiguration.didRequestJavaScriptCall: \(error)")
-            }
-        })
-    }
-}

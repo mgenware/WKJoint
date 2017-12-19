@@ -17,6 +17,8 @@ protocol WKJScriptMessageHandlerDelegate: class {
 }
 
 class WKJScriptMessageHandler: NSObject {
+    // constants
+    let JS_UNDEFINED = "undefined"
     // readonly props
     let namespace: WKJNamespace
     // weak props
@@ -47,7 +49,7 @@ extension WKJScriptMessageHandler: WKScriptMessageHandler {
             return
         }
         
-        guard let fn = funcs[funcName] else {
+        guard let fn = namespace[funcName] else {
             resolvePromise(id: promiseID, data: nil, error: "Func \"\(funcName)\" is not defined")
             return
         }
@@ -85,7 +87,7 @@ extension WKJScriptMessageHandler {
         }
         webView.evaluateJavaScript(js, completionHandler: { (_, error) in
             if let error = error {
-                emitOutgoingWarning(error)
+                self.emitOutgoingWarning(error)
             }
         })
     }
@@ -121,7 +123,7 @@ extension WKJScriptMessageHandler {
 }
 
 // MARK: - WKJPromiseProxyDelegate
-extension WKJNamespace: WKJPromiseProxyDelegate {
+extension WKJScriptMessageHandler: WKJPromiseProxyDelegate {
     func promise(_ promise: WKJPromiseProxy, didResolve data: Any?) {
         resolvePromise(id: promise.id, data: data, error: nil)
     }

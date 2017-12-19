@@ -18,9 +18,9 @@ class MyJavaScriptAPIEnv {
     
     func setupEnv(namespaces: [WKJNamespace]) {
         // setup namespaces
-        let wkjConfig = WKJConfiguration()
-        wkjConfig.addNamespaces(namespaces)
-        wkjConfig.addToWebView(webView)
+        let apiStore = WKJAPIStore()
+        apiStore.addNamespaces(namespaces)
+        apiStore.mount(webView)
        
         // inject runtime script
         webView.configuration.userContentController.addUserScript(WKJRuntime.wkUserScript())
