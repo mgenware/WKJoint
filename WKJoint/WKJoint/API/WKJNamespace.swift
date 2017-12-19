@@ -7,30 +7,9 @@
 //
 
 import UIKit
-import WebKit
-
-// Func type for a sync func
-typealias WKJFunc = (_ args: WKJArgs) throws -> Any?
-// Func type for an async func
-typealias WKJAsyncFunc = (_ args: WKJArgs, _ promise: WKJPromiseProxy) -> Void
-
-// defines the type used to store an API func
-protocol WKJFuncProtocol {
-    var name: String { get }
-}
 
 // defines a namespace object
-class WKJNamespace: NSObject {
-    struct SyncFunc: WKJFuncProtocol {
-        let name: String
-        let value: WKJFunc
-    }
-    struct AsyncFunc: WKJFuncProtocol {
-        let name: String
-        let value: WKJAsyncFunc
-    }
-    
-    let JS_UNDEFINED = "undefined"
+class WKJNamespace: NSObject {    
     let name: String
     private var funcs: [String: WKJFuncProtocol] = [String: WKJFuncProtocol]()
     
@@ -48,6 +27,12 @@ class WKJNamespace: NSObject {
     func addAsyncFunc(_ name: String, _ fn: @escaping WKJAsyncFunc) {
         checkNotExist(fnName: name)
         funcs[name] = AsyncFunc(name: name, value: fn)
+    }
+    
+    subscript(key: String) -> WKJFuncProtocol? {
+        get {
+            return funcs[key]
+        }
     }
     
     private func checkNotExist(fnName: String) {
