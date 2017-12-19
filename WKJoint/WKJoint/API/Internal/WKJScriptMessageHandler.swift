@@ -16,12 +16,12 @@ protocol WKJScriptMessageHandlerDelegate: class {
     func scriptMessageHandler(_ scriptMessageHandler: WKJScriptMessageHandler, didReceiveOutgoingCallError error: Error)
 }
 
-class WKJScriptMessageHandler: WKScriptMessageHandler {
+class WKJScriptMessageHandler: NSObject {
     // readonly props
     let namespace: WKJNamespace
     // weak props
-    weak let webView: WKWebView?
-    weak let delegate: WKJScriptMessageHandlerDelegate?
+    weak var webView: WKWebView?
+    weak var delegate: WKJScriptMessageHandlerDelegate?
     
     init(webView: WKWebView, namespace: WKJNamespace) {
         self.webView = webView
@@ -120,4 +120,14 @@ extension WKJScriptMessageHandler {
     }
 }
 
+// MARK: - WKJPromiseProxyDelegate
+extension WKJNamespace: WKJPromiseProxyDelegate {
+    func promise(_ promise: WKJPromiseProxy, didResolve data: Any?) {
+        resolvePromise(id: promise.id, data: data, error: nil)
+    }
+    
+    func promise(_ promise: WKJPromiseProxy, didReject error: Any?) {
+        resolvePromise(id: promise.id, data: nil, error: error)
+    }
+}
 

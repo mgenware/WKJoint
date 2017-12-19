@@ -14,10 +14,6 @@ typealias WKJFunc = (_ args: WKJArgs) throws -> Any?
 // Func type for an async func
 typealias WKJAsyncFunc = (_ args: WKJArgs, _ promise: WKJPromiseProxy) -> Void
 
-protocol WKJNamespaceDelegate: class {
-    func namespace(_ namespace: WKJNamespace, didRequestJavaScriptCall js: String)
-}
-
 // defines the type used to store an API func
 protocol WKJFuncProtocol {
     var name: String { get }
@@ -37,8 +33,6 @@ class WKJNamespace: NSObject {
     let JS_UNDEFINED = "undefined"
     let name: String
     private var funcs: [String: WKJFuncProtocol] = [String: WKJFuncProtocol]()
-    
-    weak var delegate: WKJNamespaceDelegate?
     
     init(name: String) {
         self.name = name
@@ -63,15 +57,3 @@ class WKJNamespace: NSObject {
     }
 }
 
-
-
-// MARK: - WKJArgsDelegate
-extension WKJNamespace: WKJPromiseProxyDelegate {
-    func promise(_ promise: WKJPromiseProxy, didResolve data: Any?) {
-        resolvePromise(id: promise.id, data: data, error: nil)
-    }
-    
-    func promise(_ promise: WKJPromiseProxy, didReject error: Any?) {
-        resolvePromise(id: promise.id, data: nil, error: error)
-    }
-}
