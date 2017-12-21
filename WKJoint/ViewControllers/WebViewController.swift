@@ -27,7 +27,9 @@ class WebViewController: ViewController {
     
     func setupWebView() {
         // view-related
+        GlobalTime.log("start creating WebView")
         webView = WKWebView(frame: view.bounds)
+        GlobalTime.log("end creating WebView")
         view.addSubview(webView)
         
         // set delegates
@@ -47,7 +49,7 @@ class WebViewController: ViewController {
     }
     
     deinit {
-        print("🎉🎉🎉 WebViewController deinited")
+        GlobalTime.log("WebViewController deinited")
     }
 
 }

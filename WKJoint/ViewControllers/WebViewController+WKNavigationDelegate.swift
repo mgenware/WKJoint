@@ -11,8 +11,11 @@ import WebKit
 
 extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        print("🏃‍♀️ navigationAction: \(navigationAction.request)")
+        GlobalTime.log("navigationAction \(navigationAction.request)")
         decisionHandler(.allow)
     }
     
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        GlobalTime.log("didFinishNavigation \(navigation)")
+    }
 }

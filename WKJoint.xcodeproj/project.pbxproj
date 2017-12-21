@@ -30,6 +30,7 @@
 		87D341DD1FE8F6F100E575D4 /* WKJIncomingCallError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D341DC1FE8F6F100E575D4 /* WKJIncomingCallError.swift */; };
 		87D341DF1FE8FC7800E575D4 /* WKJFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D341DE1FE8FC7800E575D4 /* WKJFunc.swift */; };
 		87D341E11FE8FDE900E575D4 /* WKJContextProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D341E01FE8FDE900E575D4 /* WKJContextProtocol.swift */; };
+		87D888431FEBAF6C00DB7BD2 /* GlobalTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D888421FEBAF6C00DB7BD2 /* GlobalTime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		87D341DC1FE8F6F100E575D4 /* WKJIncomingCallError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJIncomingCallError.swift; sourceTree = "<group>"; };
 		87D341DE1FE8FC7800E575D4 /* WKJFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJFunc.swift; sourceTree = "<group>"; };
 		87D341E01FE8FDE900E575D4 /* WKJContextProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJContextProtocol.swift; sourceTree = "<group>"; };
+		87D888421FEBAF6C00DB7BD2 /* GlobalTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				874262E11FD792DB0094618A /* WKJoint */,
 				8772784E1FEBAB5600980D8C /* ViewControllers */,
 				874262CF1FD792CF0094618A /* AppDelegate.swift */,
+				87D888421FEBAF6C00DB7BD2 /* GlobalTime.swift */,
 				874262D31FD792CF0094618A /* Main.storyboard */,
 				874262D61FD792CF0094618A /* Assets.xcassets */,
 				874262D81FD792CF0094618A /* LaunchScreen.storyboard */,
@@ -261,6 +264,7 @@
 				874262FD1FD7EB380094618A /* WKJPromiseProxy.swift in Sources */,
 				874262D01FD792CF0094618A /* AppDelegate.swift in Sources */,
 				5AC5645F1FE460BA000B9514 /* WKJError.swift in Sources */,
+				87D888431FEBAF6C00DB7BD2 /* GlobalTime.swift in Sources */,
 				87D341DB1FE8EED000E575D4 /* WKJScriptMessageHandler.swift in Sources */,
 				877278501FEBABAB00980D8C /* WebViewController+WKUIDelegate.swift in Sources */,
 				874262EA1FD799500094618A /* WKJNamespace.swift in Sources */,
