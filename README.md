@@ -10,34 +10,34 @@ JavaScript to Native(Swift) Bridge
 * Custom user agent support.
 
 ## Example
+
 JavaScript side:
+
 ```javascript
 const api = window.MyJavaScriptAPI;
 if (api) {
   // call a math.add function implemented in native side
-  api.math.add({
-    x: -3, y: 120,
-  })
-  .then((res) => {
-    console.log(`Succeeded: ${res}`);
-  })
-  .catch((err) => {
-    console.log(`Error occurred: ${err}`);
-  });
+  api.math.add({ x: -3, y: 120 })
+    .then((res) => {
+      console.log(`Succeeded: ${res}`);
+    })
+    .catch((err) => {
+      console.log(`Error occurred: ${err}`);
+    });
 
   // display an iOS action sheet
   api.alert.sheetAsync()
-  .then((res) => {
-    console.log(`Succeeded: ${res}`);
-  })
-  .catch((err) => {
-    console.log(`Error occurred: ${err}`);
-  });
+    .then((res) => {
+      console.log(`Succeeded: ${res}`);
+    })
+    .catch((err) => {
+      console.log(`Error occurred: ${err}`);
+    });
 }
-
 ```
 
 Native side:
+
 ```swift
 // implement math.add in sync style
 class MathNamespace: WKJNamespace {
@@ -95,7 +95,9 @@ class AlertNamespace: WKJNamespace {
 ## JavaScript Runtime
 
 ### Building the Runtime
+
 To build the JavaScript runtime, navigate to `JavaScript` folder, run:
+
 ```sh
 # install dependencies
 yarn
