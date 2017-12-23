@@ -67,6 +67,11 @@ class AlertNamespace: WKJNamespace {
     }
 
     private func sheetAsync(args: WKJArgs, promise: WKJPromiseProxy) {
+        guard let viewController = args.context?.viewControllerInstance else {
+            promise.reject("No context defined")
+            return
+        }
+        
         // create UIAlertController
         let actionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
@@ -85,8 +90,6 @@ class AlertNamespace: WKJNamespace {
         actionSheetController.addAction(cancelAction)
         
         // display the action sheet
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let viewController = appDelegate.window!.rootViewController as! ViewController
         viewController.present(actionSheetController, animated: true, completion: nil)
     }
 }
