@@ -6,7 +6,7 @@ JavaScript to Native(Swift) Bridge
 
 * `Promise` based API in JavaScript side.
 * Runtime automatically injected to WebView, no need to import extra script files.
-* Define native implementations in both async and sync ways.
+* Support for native implementations in both async and sync ways.
 * Custom user agent support.
 
 ## Example
