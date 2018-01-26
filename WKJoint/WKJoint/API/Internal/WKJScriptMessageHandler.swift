@@ -50,7 +50,7 @@ extension WKJScriptMessageHandler: WKScriptMessageHandler {
         }
         
         guard let fn = namespace[funcName] else {
-            resolvePromise(id: promiseID, data: nil, error: "Func \"\(funcName)\" is not defined")
+            resolvePromise(id: promiseID, data: nil, error: "The Function \"\(funcName)\" is not defined")
             return
         }
         
