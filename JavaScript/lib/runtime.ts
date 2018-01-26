@@ -42,21 +42,39 @@ export default class WKJointRuntime {
     }
 
     const promise = new Promise((resolve, reject) => {
-      const id = this.generateID();
-      const delayedPromise = new DelayedPromise(resolve, reject);
-      this.promises[id] = delayedPromise;
-      this.log(`BeginPromise: ${ns}.${func} [${id}]`);
-
       try {
         if (this.webkit && this.webkit.messageHandlers) {
           const handler = this.webkit.messageHandlers[ns];
           if (handler && typeof handler.postMessage === 'function') {
+            // generate an unique ID
+            const id = this.generateID();
+            // create a delayed promise
+            const delayedPromise = new DelayedPromise(resolve, reject);
+            // add it to the pending array
+            this.promises[id] = delayedPromise;
+            // logging
+            this.log(`BeginPromise: ${ns}.${func} [${id}]`);
+
+            // start native call
             const call = new WKJCall(id, func, arg || {});
             handler.postMessage(call);
+
+            // this return statement ensures we won't fall through
+            return;
           }
+
+          // rejected by namespace not found
+          const errMsg = `The namespace "${ns}" does not exist`;
+          this.log(errMsg);
+          reject(errMsg);
+          return;
         }
       } catch (err) {
-        this.log(`BeginPromise: exception: ${JSON.stringify(err)}`);
+        // rejected by exception
+        const errMsg = `BeginPromise: exception: ${JSON.stringify(err)}`;
+        this.log(errMsg);
+        reject(errMsg);
+        return;
       }
     });
     return promise;
