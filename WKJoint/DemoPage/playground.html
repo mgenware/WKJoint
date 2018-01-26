@@ -48,15 +48,20 @@
     <button class="btn" id="btnTestSync">Sync Func</button><br>
     <button class="btn" id="btnTestCustomErr">Custom Error</button><br>
     <button class="btn" id="btnTestFuncNotFound">Undefined Func</button><br>
+    <button class="btn" id="btnTestNsNotFound">Undefined Namespace</button><br>
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script>
       function handlePromise(promise) {
-        promise.then((res) => {
-          alert(`Succeeded: ${JSON.stringify(res)}`);
-        }).catch((err) => {
+        try {
+          promise.then((res) => {
+            alert(`Succeeded: ${JSON.stringify(res)}`);
+          }).catch((err) => {
+            alert(`Failed: ${JSON.stringify(err)}`);
+          });
+        } catch (err) {
           alert(`Failed: ${JSON.stringify(err)}`);
-        });
+        }
       }
       $('#ua-row').text(navigator.userAgent);
       $('#rt-row').text(!!window.__WKJoint ? 'Injected' : 'Not found');
@@ -74,7 +79,10 @@
         handlePromise(api.math.add({ x: 'sssss' }));
       });
       $('#btnTestFuncNotFound').click(function(e) {
-        handlePromise(api.alert._FUNC_NOT_FOUND_);
+        handlePromise(window.__WKJoint.beginPromise('alert', '_FUNC_NOT_FOUND_'));
+      });
+      $('#btnTestNsNotFound').click(function(e) {
+        handlePromise(window.__WKJoint.beginPromise('_NS_NOT_FOUND_', 'test'));
       });
     </script>
   </body>
