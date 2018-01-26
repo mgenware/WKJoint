@@ -2,13 +2,11 @@
  *
  * WKJoint Runtime.ts
  * https://github.com/mgenware/WKJoint
- * @ 2017 Mgen
+ * @ 2018 Mgen
  *
- *
- * Inspired by http://igomobile.de/2017/03/06/wkwebview-return-a-value-from-native-code-to-javascript/
  */
 
- // Any data returned from client will conform to IClientData interface
+ // Any data returned from client must conform to the IClientData interface
 export interface IClientData {
   default: object;
 }
