@@ -57,9 +57,8 @@ class WebViewController: ViewController {
 // MARK: - Demo Page
 extension WebViewController {
     private func loadDemoPage() {
-        let url = Bundle.main.url(forResource: "playground", withExtension: "html", subdirectory: "DemoPage")
-        let htmlString = try! String(contentsOf: url!, encoding: .utf8)
-        webView.loadHTMLString(htmlString, baseURL: Bundle.main.bundleURL.appendingPathComponent("DemoPage", isDirectory: true))
+        let url = URL(fileURLWithPath: Bundle.main.path(forResource: "playground", ofType: "html", inDirectory: "DemoPage")!)
+        webView.loadFileURL(url, allowingReadAccessTo: url)
     }
 }
 
