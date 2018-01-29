@@ -1,0 +1,42 @@
+{
+  "name": "wkjoint",
+  "version": "0.0.2",
+  "description": "A JavaScript to Native Bridge for WKWebView/iOS",
+  "main": "dist/lib/main.js",
+  "types": "dist/lib/main.d.ts",
+  "author": "Mgen (https://www.mgenware.com)",
+  "homepage": "https://github.com/mgenware/WKJoint",
+  "bugs": "https://github.com/mgenware/WKJoint/issues",
+  "keywords": [
+    "javascript bridge", "wkwebview"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mgenware/WKJoint.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^22.0.1",
+    "@types/node": "*",
+    "copyfiles": "*",
+    "jest": "^22.0.4",
+    "tslint": "*",
+    "typescript": "*"
+  },
+  "scripts": {
+    "test": "yarn run clean && yarn run compile && yarn run lint && yarn run dev_test",
+    "dev_test": "yarn run copy && jest",
+    "build": "yarn test",
+    "compile": "tsc",
+    "dev": "yarn run clean && tsc -w",
+    "prepublishOnly": "yarn run test",
+    "lint": "tslint --project tsconfig.json --config tslint.json",
+    "copy": "copyfiles \"tests/data/**/*.*\" \"dist\"",
+    "clean:dist": "rm -rf dist",
+    "clean": "npm run clean:dist"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {}
+}

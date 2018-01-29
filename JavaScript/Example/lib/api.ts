@@ -1,5 +1,4 @@
-import Runtime from './runtime';
-import Namespace from './namespace';
+import { Namespace, Runtime } from 'wkjoint';
 
 export interface IAddArgument {
   x: number;

@@ -514,9 +514,9 @@ uglify-es@^3.3.7:
     commander "~2.13.0"
     source-map "~0.6.1"
 
-uglify-js@^3.3.8:
-  version "3.3.8"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.3.8.tgz#51e9a5db73afb53ac98603d08224edcd0be45fd8"
+uglify-js@^3.3.9:
+  version "3.3.9"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.3.9.tgz#33869666c8ab7f7658ce3d22f0f1ced40097d33a"
   dependencies:
     commander "~2.13.0"
     source-map "~0.6.1"
@@ -536,6 +536,10 @@ unique-temp-dir@^1.0.0:
 universalify@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-0.1.1.tgz#fa71badd4437af4c148841e3b3b165f9e9e590b7"
+
+wkjoint@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/wkjoint/-/wkjoint-0.0.2.tgz#6f61fa7243fdb941cf47a8f80551d2d279fd9272"
 
 wrappy@1:
   version "1.0.2"

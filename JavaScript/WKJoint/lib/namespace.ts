@@ -1,4 +1,4 @@
-import Runtime from './runtime';
+import { Runtime } from './runtime';
 
 export default class Namespace {
   constructor(public name: string, public runtime: Runtime) { }

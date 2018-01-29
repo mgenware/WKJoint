@@ -1,4 +1,4 @@
- /*************************************************************************
+/*************************************************************************
  *
  * WKJoint Runtime.ts
  * https://github.com/mgenware/WKJoint
@@ -6,12 +6,12 @@
  *
  */
 
- // Any data returned from client must conform to the IClientData interface
+// Any data returned from client must conform to the IClientData interface
 export interface IClientData {
   default: object;
 }
 
- // Pending promise object tracked in context
+// Pending promise object tracked in context
 export class DelayedPromise<T> {
   constructor(
     public resolve: (value?: T | PromiseLike<T>) => void,
@@ -23,7 +23,7 @@ class WKJCall {
   constructor(public promiseID: string, public func: string, public arg: object) {}
 }
 
-export default class WKJointRuntime {
+export class Runtime {
   webkit: any|null;
   devMode: boolean;
   promises: { [id: string]: DelayedPromise<object>; } = {};

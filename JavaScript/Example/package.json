@@ -1,5 +1,5 @@
 {
-  "name": "wkjoint",
+  "name": "wkjoint_example",
   "version": "1.0.0",
   "description": "",
   "main": "runtime.ts",
@@ -11,14 +11,16 @@
   },
   "author": "Mgen",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "wkjoint": "^0.0.2"
+  },
   "devDependencies": {
     "rollup": "^0.55.1",
     "rollup-plugin-typescript2": "^0.10.0",
     "rollup-plugin-uglify": "^3.0.0",
     "tslint": "^5.9.1",
     "typescript": "^2.6.2",
-    "uglify-js": "^3.3.8",
+    "uglify-js": "^3.3.9",
     "unique-temp-dir": "^1.0.0"
   }
 }
