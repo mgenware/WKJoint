@@ -1,6 +1,6 @@
 {
   "name": "wkjoint",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "A JavaScript to Native Bridge for WKWebView/iOS",
   "main": "dist/lib/main.js",
   "types": "dist/lib/main.d.ts",
@@ -8,7 +8,8 @@
   "homepage": "https://github.com/mgenware/WKJoint",
   "bugs": "https://github.com/mgenware/WKJoint/issues",
   "keywords": [
-    "javascript bridge", "wkwebview"
+    "javascript bridge",
+    "wkwebview"
   ],
   "repository": {
     "type": "git",
@@ -16,12 +17,12 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^22.0.1",
-    "@types/node": "*",
+    "@types/jest": "^22.1.1",
+    "@types/node": "9.4.1",
     "copyfiles": "*",
-    "jest": "^22.0.4",
-    "tslint": "*",
-    "typescript": "*"
+    "jest": "^22.1.4",
+    "tslint": "5.9.1",
+    "typescript": "2.7.1"
   },
   "scripts": {
     "test": "yarn run clean && yarn run compile && yarn run lint && yarn run dev_test",
