@@ -581,9 +581,9 @@ vlq@^0.2.1:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/vlq/-/vlq-0.2.3.tgz#8f3e4328cf63b1540c0d67e1b2778386f8975b26"
 
-wkjoint@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/wkjoint/-/wkjoint-0.0.2.tgz#6f61fa7243fdb941cf47a8f80551d2d279fd9272"
+wkjoint@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/wkjoint/-/wkjoint-1.0.0.tgz#72ada57cdf44fa9833a5f03697d7d6479f65477b"
 
 wrappy@1:
   version "1.0.2"
