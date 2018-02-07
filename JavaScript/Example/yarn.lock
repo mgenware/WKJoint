@@ -173,9 +173,9 @@ for-own@^0.1.4:
   dependencies:
     for-in "^1.0.1"
 
-fs-extra@^4.0.2:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-4.0.3.tgz#0d852122e5bc5beb453fb028e9c0c9bf36340c94"
+fs-extra@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-5.0.0.tgz#414d0110cdd06705734d055652c5411260c31abd"
   dependencies:
     graceful-fs "^4.1.2"
     jsonfile "^4.0.0"
@@ -458,14 +458,14 @@ rollup-plugin-node-resolve@^3.0.2:
     is-module "^1.0.0"
     resolve "^1.1.6"
 
-rollup-plugin-typescript2@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-typescript2/-/rollup-plugin-typescript2-0.10.0.tgz#650f09da22408bede5d5925f7d8f6f89369fec50"
+rollup-plugin-typescript2@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-typescript2/-/rollup-plugin-typescript2-0.11.0.tgz#86a23464e5638b9a2320f86fe14822da66e7b190"
   dependencies:
-    fs-extra "^4.0.2"
+    fs-extra "^5.0.0"
     resolve "^1.5.0"
     rollup-pluginutils "^2.0.1"
-    tslib "^1.8.0"
+    tslib "^1.9.0"
 
 rollup-plugin-uglify@^3.0.0:
   version "3.0.0"
@@ -480,9 +480,9 @@ rollup-pluginutils@^2.0.1:
     estree-walker "^0.3.0"
     micromatch "^2.3.11"
 
-rollup@^0.55.1:
-  version "0.55.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.55.1.tgz#baf4f23abe3014b29e56dea7d72d9946e56ac7dd"
+rollup@^0.55.3:
+  version "0.55.3"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.55.3.tgz#0af082a766d51c3058430c8372442ff5207d8736"
 
 semver@^5.3.0:
   version "5.4.1"
@@ -516,6 +516,10 @@ tslib@^1.7.1, tslib@^1.8.0:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.8.1.tgz#6946af2d1d651a7b1863b531d6e5afa41aa44eac"
 
+tslib@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.0.tgz#e37a86fda8cbbaf23a057f473c9f4dc64e5fc2e8"
+
 tslint@^5.9.1:
   version "5.9.1"
   resolved "https://registry.yarnpkg.com/tslint/-/tslint-5.9.1.tgz#1255f87a3ff57eb0b0e1f0e610a8b4748046c9ae"
@@ -539,9 +543,9 @@ tsutils@^2.12.1:
   dependencies:
     tslib "^1.7.1"
 
-typescript@^2.6.2:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.6.2.tgz#3c5b6fd7f6de0914269027f03c0946758f7673a4"
+typescript@^2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.1.tgz#bb3682c2c791ac90e7c6210b26478a8da085c359"
 
 uglify-es@^3.3.7:
   version "3.3.8"
