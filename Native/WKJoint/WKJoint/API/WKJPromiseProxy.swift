@@ -9,8 +9,8 @@
 import UIKit
 
 protocol WKJPromiseProxyDelegate: class {
-    func promise(_ promise: WKJPromiseProxy, didResolve data: Any?)
-    func promise(_ promise: WKJPromiseProxy, didReject error: Any?)
+    func promise(_ promise: WKJPromiseProxy, didResolve data: WKJEncodable?)
+    func promise(_ promise: WKJPromiseProxy, didReject error: WKJEncodable?)
 }
 
 class WKJPromiseProxy {
@@ -21,11 +21,11 @@ class WKJPromiseProxy {
         self.id = id
     }
     
-    func resolve(_ data: Any?) {
+    func resolve(_ data: WKJEncodable?) {
         delegate?.promise(self, didResolve: data)
     }
     
-    func reject(_ error: Any?) {
+    func reject(_ error: WKJEncodable?) {
         delegate?.promise(self, didReject: error)
     }
 }

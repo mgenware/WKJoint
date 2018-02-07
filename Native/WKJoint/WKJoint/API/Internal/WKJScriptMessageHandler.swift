@@ -50,7 +50,7 @@ extension WKJScriptMessageHandler: WKScriptMessageHandler {
         }
         
         guard let fn = namespace[funcName] else {
-            resolvePromise(id: promiseID, data: nil, error: "The Function \"\(funcName)\" is not defined")
+            resolvePromise(id: promiseID, data: nil, error: WKJValue("Func \"\(funcName)\" is not defined"))
             return
         }
         
@@ -62,7 +62,7 @@ extension WKJScriptMessageHandler: WKScriptMessageHandler {
                 let result = try syncFn.value(args)
                 resolvePromise(id: promiseID, data: result, error: nil)
             } catch {
-                resolvePromise(id: promiseID, data: nil, error: error)
+                resolvePromise(id: promiseID, data: nil, error: WKJValue(error.localizedDescription))
             }
         } else {
             let asyncFn = fn as! AsyncFunc
@@ -76,7 +76,7 @@ extension WKJScriptMessageHandler: WKScriptMessageHandler {
 
 // MARK: - Promise
 extension WKJScriptMessageHandler {
-    private func resolvePromise(id: String, data: Any?, error: Any?) {
+    private func resolvePromise(id: String, data: WKJEncodable?, error: WKJEncodable?) {
         let dataJS = dataToJSON(data)
         let errorJS = dataToJSON(error)
         let js = "window.__WKJoint.endPromise(\"\(id)\", \(dataJS), \(errorJS))"
@@ -92,22 +92,15 @@ extension WKJScriptMessageHandler {
         })
     }
     
-    private func dataToJSON(_ data: Any?) -> String {
-        guard let data = data else {
+    private func dataToJSON(_ encodable: WKJEncodable?) -> String {
+        guard let jsonData = encodable?.encodeToJSON() else {
             return JS_UNDEFINED
         }
-        do {
-            var any: Any
-            if data is Error {
-                any = (data as! Error).localizedDescription
-            } else {
-                any = data
-            }
-            let raw = try JSONSerialization.data(withJSONObject: ["default": any], options: [])
-            return String(bytes: raw, encoding: .utf8) ?? JS_UNDEFINED
-        } catch {
+        guard let jsonString = String(data: jsonData, encoding: .utf8) else {
             return JS_UNDEFINED
         }
+        
+        return jsonString
     }
 }
 
@@ -124,11 +117,11 @@ extension WKJScriptMessageHandler {
 
 // MARK: - WKJPromiseProxyDelegate
 extension WKJScriptMessageHandler: WKJPromiseProxyDelegate {
-    func promise(_ promise: WKJPromiseProxy, didResolve data: Any?) {
+    func promise(_ promise: WKJPromiseProxy, didResolve data: WKJEncodable?) {
         resolvePromise(id: promise.id, data: data, error: nil)
     }
     
-    func promise(_ promise: WKJPromiseProxy, didReject error: Any?) {
+    func promise(_ promise: WKJPromiseProxy, didReject error: WKJEncodable?) {
         resolvePromise(id: promise.id, data: nil, error: error)
     }
 }

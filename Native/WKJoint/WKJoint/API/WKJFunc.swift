@@ -9,7 +9,7 @@
 import UIKit
 
 // Func type for a sync func
-typealias WKJFunc = (_ args: WKJArgs) throws -> Any?
+typealias WKJFunc = (_ args: WKJArgs) throws -> WKJEncodable?
 // Func type for an async func
 typealias WKJAsyncFunc = (_ args: WKJArgs, _ promise: WKJPromiseProxy) -> Void
 
@@ -22,6 +22,7 @@ struct SyncFunc: WKJFuncProtocol {
     let name: String
     let value: WKJFunc
 }
+
 struct AsyncFunc: WKJFuncProtocol {
     let name: String
     let value: WKJAsyncFunc
