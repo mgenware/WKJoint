@@ -86,6 +86,12 @@
       $('#btnTestNsNotFound').click(function(e) {
         handlePromise(window.__WKJoint.beginPromise('_NS_NOT_FOUND_', 'test'));
       });
+      $('#btnTestRetArray').click(function(e) {
+        handlePromise(api.factory.array());
+      });
+      $('#btnTestRetObject').click(function(e) {
+        handlePromise(api.factory.object());
+      });
     </script>
   </body>
 </html>
