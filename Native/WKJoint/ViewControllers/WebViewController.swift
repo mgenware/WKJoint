@@ -40,7 +40,11 @@ class WebViewController: ViewController {
         WKJUserAgent.updateUserAgent(webView: webView)
         
         // setup JavaScript APIs
-        let namespaces = [AlertNamespace(), MathNamespace()]
+        let namespaces = [
+            AlertNamespace(),
+            MathNamespace(),
+            FactoryNamespace(),
+        ]
         let apiStore = WKJAPIStore(namespaces: namespaces)
         apiStore.mount(self)
         

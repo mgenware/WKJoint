@@ -27,6 +27,7 @@
 		877278501FEBABAB00980D8C /* WebViewController+WKUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772784F1FEBABAB00980D8C /* WebViewController+WKUIDelegate.swift */; };
 		877278521FEBABFD00980D8C /* WebViewController+WKNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877278511FEBABFD00980D8C /* WebViewController+WKNavigationDelegate.swift */; };
 		878A4CA2202A9C2E00ED26E6 /* WKJEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878A4CA1202A9C2E00ED26E6 /* WKJEncodable.swift */; };
+		878A4CA4202AA01700ED26E6 /* FactoryNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878A4CA3202AA01700ED26E6 /* FactoryNamespace.swift */; };
 		87D341DB1FE8EED000E575D4 /* WKJScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D341DA1FE8EED000E575D4 /* WKJScriptMessageHandler.swift */; };
 		87D341DD1FE8F6F100E575D4 /* WKJIncomingCallError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D341DC1FE8F6F100E575D4 /* WKJIncomingCallError.swift */; };
 		87D341DF1FE8FC7800E575D4 /* WKJFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D341DE1FE8FC7800E575D4 /* WKJFunc.swift */; };
@@ -57,6 +58,7 @@
 		8772784F1FEBABAB00980D8C /* WebViewController+WKUIDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController+WKUIDelegate.swift"; sourceTree = "<group>"; };
 		877278511FEBABFD00980D8C /* WebViewController+WKNavigationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController+WKNavigationDelegate.swift"; sourceTree = "<group>"; };
 		878A4CA1202A9C2E00ED26E6 /* WKJEncodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WKJEncodable.swift; sourceTree = "<group>"; };
+		878A4CA3202AA01700ED26E6 /* FactoryNamespace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactoryNamespace.swift; sourceTree = "<group>"; };
 		87D341DA1FE8EED000E575D4 /* WKJScriptMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJScriptMessageHandler.swift; sourceTree = "<group>"; };
 		87D341DC1FE8F6F100E575D4 /* WKJIncomingCallError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJIncomingCallError.swift; sourceTree = "<group>"; };
 		87D341DE1FE8FC7800E575D4 /* WKJFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKJFunc.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		5AC5645B1FE45C03000B9514 /* Namespaces */ = {
 			isa = PBXGroup;
 			children = (
+				878A4CA3202AA01700ED26E6 /* FactoryNamespace.swift */,
 				5AC5645C1FE45C0F000B9514 /* MathNamespace.swift */,
 				5AC564601FE46302000B9514 /* AlertNamespace.swift */,
 			);
@@ -274,6 +277,7 @@
 				874262EA1FD799500094618A /* WKJNamespace.swift in Sources */,
 				5A0EF1F91FE5873300456285 /* WebViewController.swift in Sources */,
 				874262ED1FD7C4360094618A /* WKJRuntime.swift in Sources */,
+				878A4CA4202AA01700ED26E6 /* FactoryNamespace.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
