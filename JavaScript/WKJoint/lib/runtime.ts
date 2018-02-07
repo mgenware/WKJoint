@@ -24,7 +24,7 @@ class WKJCall {
 }
 
 export class Runtime {
-  webkit: any|null;
+  webkit: any;
   devMode: boolean = false;
   promises: { [id: string]: DelayedPromise<object>; } = {};
   private promiseCounter: number = 0;
