@@ -17,7 +17,7 @@ class AlertNamespace: WKJNamespace {
 
     private func sheetAsync(args: WKJArgs, promise: WKJPromiseProxy) {
         guard let viewController = args.context?.viewControllerInstance else {
-            promise.reject("No context defined")
+            promise.reject(WKJValue("No context defined"))
             return
         }
         
@@ -26,13 +26,13 @@ class AlertNamespace: WKJNamespace {
 
         // add actions
         let firstAction: UIAlertAction = UIAlertAction(title: "First", style: .default) { action -> Void in
-            promise.resolve("You tapped First")
+            promise.resolve(WKJValue("You tapped First"))
         }
         let secondAction: UIAlertAction = UIAlertAction(title: "Second", style: .default) { action -> Void in
-            promise.resolve("You tapped Second")
+            promise.resolve(WKJValue("You tapped Second"))
         }
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
-            promise.reject("Action cancelled")
+            promise.reject(WKJValue("Action cancelled"))
         }
         actionSheetController.addAction(firstAction)
         actionSheetController.addAction(secondAction)
