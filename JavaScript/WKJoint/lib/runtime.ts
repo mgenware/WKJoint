@@ -8,7 +8,7 @@
 
 // Any data returned from client must conform to the IClientData interface
 export interface IClientData {
-  default: object;
+  value: object;
 }
 
 // Pending promise object tracked in context
@@ -25,7 +25,7 @@ class WKJCall {
 
 export class Runtime {
   webkit: any|null;
-  devMode: boolean;
+  devMode: boolean = false;
   promises: { [id: string]: DelayedPromise<object>; } = {};
   private promiseCounter: number = 0;
 
@@ -88,9 +88,9 @@ export class Runtime {
       return;
     }
     if (error) {
-      delayedPromise.reject(error ? error.default : undefined);
+      delayedPromise.reject(error ? error.value : undefined);
     } else {
-      delayedPromise.resolve(data ? data.default : undefined);
+      delayedPromise.resolve(data ? data.value : undefined);
     }
     // remove reference
     delete this.promises[id];
