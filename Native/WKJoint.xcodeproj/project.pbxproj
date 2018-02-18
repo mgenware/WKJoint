@@ -132,8 +132,8 @@
 		874262E11FD792DB0094618A /* WKJoint */ = {
 			isa = PBXGroup;
 			children = (
-				878A4CA1202A9C2E00ED26E6 /* WKJEncodable.swift */,
 				87D341D81FE8EC0100E575D4 /* API */,
+				878A4CA1202A9C2E00ED26E6 /* WKJEncodable.swift */,
 				874262E21FD793C70094618A /* WKJUserAgent.swift */,
 				874262EC1FD7C4360094618A /* WKJRuntime.swift */,
 				87D341E01FE8FDE900E575D4 /* WKJContextProtocol.swift */,

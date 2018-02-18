@@ -47,7 +47,7 @@
     <button class="btn" id="btnTestAsync">Async Func</button><br>
     <button class="btn" id="btnTestSync">Sync Func</button><br>
     <button class="btn" id="btnTestRetArray">Returns an array</button><br>
-    <button class="btn" id="btnTestRetObject">Returns an object</button><br>
+    <button class="btn" id="btnTestRetObject">Returns an Swift Encodable Object</button><br>
     <button class="btn" id="btnTestCustomErr">Custom Error</button><br>
     <button class="btn" id="btnTestFuncNotFound">Undefined Func</button><br>
     <button class="btn" id="btnTestNsNotFound">Undefined Namespace</button><br>
@@ -90,7 +90,7 @@
         handlePromise(api.factory.array());
       });
       $('#btnTestRetObject').click(function(e) {
-        handlePromise(api.factory.object());
+        handlePromise(api.factory.encodableObject());
       });
     </script>
   </body>

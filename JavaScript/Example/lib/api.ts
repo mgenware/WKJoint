@@ -14,8 +14,8 @@ export class FactoryNamespace extends Namespace {
     return this.invoke('array', null);
   }
 
-  object(): Promise<IObjectResult> {
-    return this.invoke('object', null);
+  encodableObject(): Promise<IObjectResult> {
+    return this.invoke('encodableObject', null);
   }}
 
 export interface IAddArgument {
