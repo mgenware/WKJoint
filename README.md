@@ -7,6 +7,7 @@ JavaScript to Native(Swift) Bridge
 * `Promise` based API in JavaScript side.
 * Runtime automatically injected to WebView, no need to import extra script files.
 * Support for native implementations in both async and sync ways.
+* Support for Swift 4's Codable API.
 * Custom user agent support.
 * WKJoint supports iOS 8, but the demo project won't work on iOS 8 because of the buggy `loadHTMLString` method of WKWebView in iOS 8 ([See details](https://stackoverflow.com/questions/24882834/wkwebview-not-loading-local-files-under-ios-8)).
 
