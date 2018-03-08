@@ -21,9 +21,9 @@ class WKJIncomingCallError: LocalizedError {
         }
     }
     
-    var errorDescription: String? {
+    var localizedDescription: String {
         get {
-            return self.description
+            return msg
         }
     }
 }
