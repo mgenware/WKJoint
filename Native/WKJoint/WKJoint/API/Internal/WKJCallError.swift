@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WKJIncomingCallError: LocalizedError {
+class WKJCallError: LocalizedError {
     private var msg: String
     
     init(_ msg: String) {

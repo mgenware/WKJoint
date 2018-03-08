@@ -35,17 +35,17 @@ class WKJScriptMessageHandler: NSObject {
 extension WKJScriptMessageHandler: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let body = message.body as? Dictionary<String, Any> else {
-            emitIncomingWarning(WKJIncomingCallError("Invalid body"))
+            emitIncomingWarning(WKJCallError("Invalid body"))
             return
         }
         
         guard let promiseID = body["promiseID"] as? String else {
-            emitIncomingWarning(WKJIncomingCallError("Invalid Promise ID"))
+            emitIncomingWarning(WKJCallError("Invalid Promise ID"))
             return
         }
         
         guard let funcName = body["func"] as? String else {
-            emitIncomingWarning(WKJIncomingCallError("Empty function name"))
+            emitIncomingWarning(WKJCallError("Empty function name"))
             return
         }
         
