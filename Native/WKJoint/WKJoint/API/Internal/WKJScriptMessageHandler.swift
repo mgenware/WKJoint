@@ -82,7 +82,7 @@ extension WKJScriptMessageHandler {
         let js = "window.__WKJoint.endPromise(\"\(id)\", \(dataJS), \(errorJS))"
         
         guard let webView = context?.webViewInstance else {
-            assertionFailure("WebView is nil")
+            self.emitOutgoingWarning(WKJCallError("WebView is nil"))
             return
         }
         webView.evaluateJavaScript(js, completionHandler: { (_, error) in
