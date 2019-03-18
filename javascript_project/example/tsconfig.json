@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-      "module": "commonjs",
+      "module": "esnext",
       "removeComments": true,
       "preserveConstEnums": true,
       "sourceMap": false,
-      "target": "ES5",
+      "target": "es5",
       "declaration": true,
       "strict": true,
       "noUnusedLocals": true,

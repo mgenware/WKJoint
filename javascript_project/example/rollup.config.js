@@ -1,5 +1,5 @@
 import typescript from 'rollup-plugin-typescript2';
-import uglify from 'rollup-plugin-uglify';
+import { terser } from "rollup-plugin-terser";
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 
@@ -16,6 +16,6 @@ export default {
     }),
     commonjs(),
     typescript({ cacheRoot: (require('unique-temp-dir'))() }),
-    uglify(),
+    terser(),
 	],
 }
