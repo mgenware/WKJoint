@@ -1,25 +1,14 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "sourceMap": true,
-        "baseUrl": "lib",
-        "target": "ES5",
-        "outDir": "dist",
-        "declaration": true,
-        "strict": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "lib": [
-            "es5", "es6", "dom"
-        ]
-    },
-    "include": [
-        "lib/**/*",
-        "tests"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+  "compilerOptions": {
+    "module": "commonjs",
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "target": "es5",
+    "declaration": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "lib": ["es5", "es6", "es2017", "dom", "dom.iterable"]
+  }
 }
