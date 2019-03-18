@@ -99,17 +99,14 @@ class AlertNamespace: WKJNamespace {
 }
 ```
 
-## JavaScript Runtime
+## Demo Project
+The `example` directory contains the source code of the demo project.
 
-### Building the Runtime
+### Running the Demo App
+Open Xcode project at `example/native/WKJoint.xcodeproj`.
 
-To build the JavaScript runtime, navigate to `JavaScript` folder, run:
-
-```sh
-# install dependencies
-yarn
-# start building
-yarn build
-```
-
-Rollup.js is used to bundle all TypeScript files to `dist/js_api_bundle.js`. TypeScript definition files are also generated to `dist` folder.
+#### Building the JS file
+* Navigate to the JavaScript project of the example `cd ./example/js`.
+* Install dependencies `yarn`.
+* Build `yarn build`.
+* Your JavaScript API file is bundled into `./example/js/dist/js_api_bundle.js`, and you should copy it to the Xcode project directory `example/native/WKJoint/JavaScriptAPI/Runtime`.
