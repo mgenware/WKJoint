@@ -11,7 +11,6 @@ export default {
   },
   plugins: [
     resolve({
-      module: true,
       browser: true,
     }),
     commonjs(),

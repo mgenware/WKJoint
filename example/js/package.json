@@ -15,14 +15,13 @@
     "wkjoint": "^1.5.0"
   },
   "devDependencies": {
-    "rollup": "^1.6.0",
-    "rollup-plugin-commonjs": "^9.2.1",
-    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup": "^1.11.3",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-node-resolve": "^4.2.3",
     "rollup-plugin-terser": "^4.0.4",
-    "rollup-plugin-typescript2": "^0.20.1",
-    "tslint": "^5.14.0",
-    "typescript": "^3.3.3333",
-    "uglify-js": "^3.4.10",
+    "rollup-plugin-typescript2": "^0.21.0",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5",
     "unique-temp-dir": "^1.0.0"
   },
   "prettier": {
