@@ -1,14 +1,15 @@
 import * as main from '../';
 import * as fs from 'fs';
+import * as assert from 'assert';
 
 describe('require this module', () => {
-  test('Verify module members', () => {
-    expect(typeof main.Namespace).toBe('function');
-    expect(typeof main.Runtime).toBe('function');
-    expect(typeof main.inject).toBe('function');
+  it('Verify module members', () => {
+    assert.equal(typeof main.Namespace, 'function');
+    assert.equal(typeof main.Runtime, 'function');
+    assert.equal(typeof main.inject, 'function');
   });
 
-  test('Verify type definition files', () => {
-    expect(fs.statSync('./dist/main.d.ts').isFile()).toBeTruthy();
+  it('Verify type definition files', () => {
+    assert.equal(fs.statSync('./dist/main.d.ts').isFile(), true);
   });
 });
