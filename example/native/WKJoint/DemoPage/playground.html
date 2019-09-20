@@ -57,12 +57,12 @@
       function handlePromise(promise) {
         try {
           promise.then((res) => {
-            alert(`Succeeded: ${JSON.stringify(res)}`);
+            alert(`Call succeeded: ${JSON.stringify(res)}`);
           }).catch((err) => {
-            alert(`Failed: ${JSON.stringify(err)}`);
+            alert(`Call failed: ${JSON.stringify(err)}`);
           });
         } catch (err) {
-          alert(`Failed: ${JSON.stringify(err)}`);
+          alert(`Call failed: ${JSON.stringify(err)}`);
         }
       }
       $('#ua-row').text(navigator.userAgent);
