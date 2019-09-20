@@ -1,6 +1,6 @@
 {
   "name": "wkjoint",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "A JavaScript to Native Bridge for WKWebView/iOS",
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
