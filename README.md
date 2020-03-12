@@ -4,7 +4,7 @@ JavaScript to Native(Swift) Bridge
 
 ## Features
 
-* `Promise` based API in JavaScript side.
+* Promise based API in JavaScript side.
 * Runtime automatically injected to WebView, no need to import extra script files.
 * Support for native implementations in both async and sync ways.
 * Support for Swift 4's Codable API.
